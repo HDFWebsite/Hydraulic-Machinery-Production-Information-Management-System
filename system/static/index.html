@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>液压机械生产资料信息管理系统_系统管理</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+        text-decoration:none
+    }
+    body{
+        height: 100%;
+        width: 100%;
+    }
+    .all{
+        width: 100%;
+        height: 650px;
+        background-color: #99ccff;
+    }
+    .top{
+        width: 100%;
+        height: 5%;
+        line-height: 30px;
+        background-color: #d2d5e1;
+        border-bottom: 1px solid black;
+    }
+    .topleft{
+        width: 15%;
+        float: left;
+        height: 100%;
+        background-color:#6d98d9;
+    }
+    .topright{
+        width: 10%;
+        height: 100%;
+        float: left;
+    }
+    .topleft li{
+        float: left;
+        margin-left: 10px;
+    }
+    .topright li{
+        float: right;
+        margin-right: 18px;
+    }
+    .top span{
+        width: 75%;
+        float: left;
+        font-weight: bold;
+        color:#0b15a4;
+        text-align: center;
+    }
+    .bottom{
+        width: 100%;
+        height: 95%;
+    }
+    .left{
+        width: 14%;
+        height: 100%;
+        float: left;
+        overflow: auto;
+        background-color: #E7F5FD;
+    }
+    .left ul{
+        border-top: 4px solid gray;
+    }
+    .left span{
+        font-size: 18px;
+        line-height: 30px;
+        font-weight: bold;
+    }
+    .left li{
+        font-size: 12px;
+        line-height: 20px;
+        margin-left: 5px;
+    }
+    .middle{
+        width: 1%;
+        height: 100%;
+        float: left;
+        text-align: center;
+        background-color:#d3ebfc;
+    }
+    .middle img{     
+       margin-top:250px;
+    }
+    .right{
+        width: 85%;
+        height: 100%;
+        float: right;
+        background-color: red;
+    }
+    .intop{
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        overflow: hidden;
+    }
+</style>
+<body>
+    <div class="all">
+        <div class="top">
+            <ul class="topleft">
+                <li>当前用户：张伟丰</li>
+            </ul>
+            <span><a href="./main.html" target="myframe">液压机械生产资料信息管理系统</a></span>
+            <ul class="topright">
+                <li>注销</li>
+                <li>退出</li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <div class="left">
+                <ul>
+                    <span>基础数据管理</span>
+                    <li><img src='./images/arrow.gif'>&nbsp;
+                        <a href="./onebaseinfo.html" target="myframe">物料基础信息管理</a></li>
+                    <li><img src='./images/arrow.gif'>&nbsp;
+                        <a href="./onebaseinput.html" target="myframe">BOM资料录入</a></li>
+                    <li><img src='./images/arrow.gif'>&nbsp;
+                        <a href="./onebasemanage.html" target="myframe">BOM资料管理</a></li>
+                </ul>
+                <ul>
+                    <span>生产资料价格管理</span>
+                    <li><img src='./images/arrow.gif'>&nbsp;原材料单价录入</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;辅助材料单价录入</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;半成品单位加工费录入</li>
+                </ul>
+                <ul>
+                    <span>生产资料采购管理</span>
+                    <li><img src='./images/arrow.gif'>&nbsp;生产计划录入</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;材料需求计算</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;采购订单生成</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;采购到货管理</li>
+                </ul>
+                <ul>
+                    <span>生产资料耗用量计算</span>
+                    <li><img src='./images/arrow.gif'>&nbsp;已生产产成品录入</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;原材料消耗量计算</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;原材料消耗量统计</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;半成品消耗量计算</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;半成品消耗量统计</li>
+                </ul>
+                <ul>
+                    <span>信息查询</span>
+                    <li><img src='./images/arrow.gif'>&nbsp;生产计划信息查询</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;物料需求月汇总表</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;采购情况统计表</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;物料月消耗量统计表</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;物料月消耗费用统计表</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;半成品月生产量统计表</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;半成品月生产费用统计表</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;半成品月生产费用明细查询</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;产成品月生产量统计表</li>
+                    <li><img src='./images/arrow.gif'>&nbsp;产成品生产费用明细查询</li>
+                </ul>     
+            </div>
+            <div class="middle">
+                    <img src="./images/close.gif" alt="">
+                </div>
+            <div class="right">
+                <div class="intop">
+                    <!-- <iframe src="./main.html" id="iframe1" width="100%" height="100%"></iframe> -->
+                    <iframe src="./main.html" width="100%" height="100%" name="myframe"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
