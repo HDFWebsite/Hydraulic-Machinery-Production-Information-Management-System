@@ -9,3 +9,21 @@ def index():
         'user_info':'黄德飞'
     }
     return render_template('index.html',data=data)
+
+
+@boms_blue.route('/onebaseinfo')
+# @login_required
+def onebaseinfo():
+
+    data = {
+        'user_info':'黄德飞'
+    }
+    return render_template('onebaseinfo.html',data=data)
+
+@boms_blue.route('/onebaseinput')
+# @login_required
+def onebaseinput():
+    data = {
+        'user_info':'黄德飞'
+    }
+    return render_template('onebaseinput.html',data=data)
