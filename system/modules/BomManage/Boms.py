@@ -27,3 +27,11 @@ def onebaseinput():
         'user_info':'黄德飞'
     }
     return render_template('onebaseinput.html',data=data)
+
+@boms_blue.route('/onebasemanage')
+# @login_required
+def onebasemanage():
+    data = {
+        'user_info':'黄德飞'
+    }
+    return render_template('onebasemanage.html',data=data)
