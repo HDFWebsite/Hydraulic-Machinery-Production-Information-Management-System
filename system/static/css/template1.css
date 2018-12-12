@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+}
+body{
+    width: 100%;
+}
+p{
+    width: 100%;
+    height:50px;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+}
+.table{
+    height: 580px;
+    border:1px solid gray;
+}
+.tablelist ul{
+    height: 30px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background-color: #d2d5e1;
+}
+.template11{
+    width: 44px;
+    height: 30px;
+    float: left;
+    text-align: center;
+    border-right: 1px solid gray;
+}
+.tableend{
+    height:30px;
+    font-size: 14px;
+    line-height: 30px;
+    background-color: #d2d5e1;
+    border-top: 1px solid gray;
+}
+
+.tableend input{
+    width: 20px;
+    height: 16px;
+}
+.tableend span{
+    margin: 0 5px;
+} 
+button{
+    width: 80px;
+    height: 26px;
+    margin: 0 5px;
+}   
+.tabletop{
+    height: 35px;
+    width: 100%;
+    background-color: #d2d5e1;
+    /* border:1px solid gray; */
+}
+.tabletop div{
+    height: 100%;
+    float: left;
+    line-height: 30px;
+    width: 50%;
+}
+.template12{
+    width: 45px;
+    height: 30px;
+    float: left;
+    text-align: center;
+    border-right: 1px solid gray;
+}
+.main{
+    width: 164px;
+    float: left;
+    line-height: 30px;
+    text-align: center;
+    border-right: 1px solid gray;
+}
+.tableinfo1{
+    width: 100%;
+    height:480px;
+    overflow:auto;
+    /* border: 1px solid red; */
+}
+.tableinfo1 ul{
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid gray;
+}
+.main2{
+    width: 71px;
+    float: left;
+    line-height: 30px;
+    text-align: center;
+    border-right: 1px solid gray;
+}
+.tableinfo2{
+    width: 100%;
+    height:500px;
+    overflow:auto;
+    /* border: 1px solid red; */
+}
+.tableinfo2 ul{
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid gray;
+}
