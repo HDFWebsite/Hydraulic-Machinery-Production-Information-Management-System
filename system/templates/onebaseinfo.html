@@ -4,94 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/template1.css">
     <title>物料基础信息管理</title>
     <style>
-    *{
-        margin: 0;
-        padding: 0;
-        list-style:none;
-    }
-    body{
-        width: 97%;
-    }
-    p{
-        line-height: 50px;
-        text-align: center;
-    }
-    .table{
-        height: 580px;
-        border:1px solid gray;
-    }
-    .tabletop{
-        height: 35px;
-        width: 100%;
-        background-color: #d2d5e1;
-        /* border:1px solid gray; */
-    }
-    .tabletop div{
-        height: 100%;
-        float: left;
-        line-height: 30px;
-        width: 50%;
-    }
-    .tabletop img{
-        width: 20px;
-        height:20px;
-        margin-top: 5px;
-    }
-    .tablelist ul{
-        height: 30px;
-        border-top: 1px solid gray;
-        border-bottom: 1px solid gray;
-        background-color: #d2d5e1;
-    }
-    .lefttabtopleft1{
-        width: 52px;
-        height: 30px;
-        float: left;
-        text-align: center;
-        border-right: 1px solid gray;
-            }
-    .lefttabtopleft2{
-        width: 45px;
-        height: 30px;
-        float: left;
-        text-align: center;
-        border-right: 1px solid gray;
-        }
-    .main{
-        width: 164px;
-        float: left;
-        line-height: 30px;
-        text-align: center;
-        border-right: 1px solid gray;
-    }
-    .tableinfo{
-        width: 100%;
-        height:480px;
-        overflow:auto;
-        /* border: 1px solid red; */
-    }
-    .tableinfo ul{
-        width: 100%;
-        height: 30px;
-        border-bottom: 1px solid gray;
-    }
-    .tableend{
-        height:30px;
-        font-size: 14px;
-        line-height: 30px;
-        background-color: #d2d5e1;
-        border-top: 1px solid gray;
-    }
-    button{
-        width: 50px;
-        height: 26px;
-        margin: 0 5px;
-    }
-    input{
-        height: 22px;
-    }
     </style>
 </head>
 <body>
@@ -105,7 +20,7 @@
                 <button><a>保存</a></button>
             </div>
             <div>
-                <div style="float:right;width:220px;">
+                <div style="float:right;width:240px;">
                     <input style="width:140px;" placeholder="请输入名称"/>
                     <button><a>查询</a></button>
                 </div>
@@ -113,8 +28,8 @@
         </div>
         <div class="tablelist">
                 <ul>
-                    <li class="lefttabtopleft1">序号</li>
-                    <li class="lefttabtopleft2"><input type="checkbox" name="" id=""></li>
+                    <li class="template11">序号</li>
+                    <li class="template12"><input type="checkbox" name="" id=""></li>
                     <li class="main">货品编号</li>
                     <li class="main">货品名称</li>
                     <li class="main">规格</li>
@@ -123,10 +38,10 @@
                     <li class="main">供应商</li>
                 </ul>
         </div>
-        <div class="tableinfo">
+        <div class="tableinfo1">
                 <ul>
-                    <li class="lefttabtopleft1">1</li>
-                    <li class="lefttabtopleft2"><input type="checkbox" name="" id=""></li>
+                    <li class="template11">1</li>
+                    <li class="template12"><input type="checkbox" name="" id=""></li>
                     <li class="main">11001</li>
                     <li class="main">1111</li>
                     <li class="main">11</li>
@@ -135,14 +50,14 @@
                     <li class="main">111</li>
                 </ul>
                 <ul>
-                    <li class="lefttabtopleft1">2</li>
-                    <li class="lefttabtopleft2"><input type="checkbox" name="" id=""></li>
-                    <li class="main main2">11001</li>
-                    <li class="main main2">1111</li>
-                    <li class="main main2">11</li>
-                    <li class="main main2">111</li>
-                    <li class="main main2">11</li>
-                    <li class="main main2">111</li>
+                    <li class="template11">2</li>
+                    <li class="template12"><input type="checkbox" name="" id=""></li>
+                    <li class="main">11001</li>
+                    <li class="main">1111</li>
+                    <li class="main">11</li>
+                    <li class="main">111</li>
+                    <li class="main">11</li>
+                    <li class="main">111</li>
                 </ul>
         </div>
         <div class="tableend">
@@ -153,12 +68,12 @@
                    <option value="">50</option>
                    <option selected='selected' value="">100</option>
                </select>
-               <span>|&lt;</span>
-               <span>&lt;</span>
-               <span><input type="text"></span>
-               <span>&gt;</span>
-               <span>&gt;|</span>
-               <span>&amp;</span>
+               <span>首页</span>
+               <span>上一页</span>
+               <span><input type="text">/4</span>
+               <span>下一页</span>
+               <span>尾页</span>
+               <span>刷新</span>
             </div>
             <div style="float:right;">
                 每页100条，共394条
