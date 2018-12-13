@@ -1,0 +1,249 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+}
+html,body{
+    width: 100%;
+    height:100%;
+}
+p{
+    width: 100%;
+    height:50px;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+}
+p button{
+    width: 100px;
+    height: 30px;
+    margin: 0 10px;
+}
+.all{
+    width: 100%;
+    height:100%;
+}
+.all button{
+    width: 60px;
+    margin-top:10px;
+}
+.spandiv{
+    width: 100%;
+    text-align:center;
+}
+input{
+    width: 100px;
+}
+table{
+    width: 98%;
+    margin: 10px auto;
+    border-collapse:collapse;
+    }
+table,th, td{
+    border:1px solid gray;
+}
+table input{
+    width:20px;
+}
+td{
+    height:20px;
+    vertical-align:bottom;
+    text-align:center;
+}
+.centerdiv{
+    text-align: center;
+}
+button{
+    width: 60px;
+}
+h4{
+    text-align: center;
+}
+.pagediv{
+    width: 100%;
+    height: 20px;
+    font-size: 16px;
+    font-family: '微软雅黑';
+    text-align: center;
+    margin-bottom: 10px;
+}
+.miandivspan{
+    height: 20px;
+    margin: 10px 36px;
+    text-align:center;
+}
+.miandivspan div {
+    float: left;
+    margin-right: 25px;
+}
+.miandivspan input{
+    width: 100px;
+}
+
+.miandivspan2{
+    height: 20px;
+    margin: 10px 10px;
+    text-align:center;
+}
+.miandivspan2 input{
+    width: 100px;
+}
+.miandivspan2 div {
+    float: left;
+    margin-right: 25px;
+}
+.tabletop{
+    height: 30px;
+    text-indent: 1em;
+    /* margin-top:5px; */
+    border-bottom: 1px solid blueviolet;
+}
+.tabletop2{
+    height: 30px;
+    text-indent: 1em;
+    margin-top:10px;
+    text-align:center;
+    border-top: 1px solid blueviolet;
+    border-bottom: 1px solid blueviolet;
+}
+.endliimg {
+    text-indent: 2em;
+}
+.endliimg li{
+    line-height: 12px;
+}
+
+.lefttwo1{
+    width: 36%;
+    height:100%;
+    float: left;
+    border-top: 1px solid  blueviolet;
+    border-left: 1px solid  blueviolet;
+    border-bottom: 1px solid  blueviolet;
+}
+.rightone1{
+    width: 27%;
+    height:100%;
+    float: left;
+    border: 1px solid  blueviolet;
+}
+
+.leftone2{
+    width: 74%;
+    height:100%;
+    float: left;
+}
+.rightone2{
+    width: 26%;
+    height:100%;
+    font-size: 14px;
+    float: left;
+}
+.rightone2 div{
+    width: 80%;
+    height:100%;
+}
+.selecttext input{
+    width: 100px;
+    text-align:center;
+}
+.selecttext2 input{
+    width: 150px;
+    text-align:center;
+}
+.leftone3{
+    width: 42%;
+    height:100%;
+    float: left;
+    border: 1px solid  blueviolet;
+}
+.rightone3{
+    width: 57.6%;
+    height:100%;
+    float: left;
+    border-top: 1px solid  blueviolet;
+    border-right: 1px solid  blueviolet;
+    border-bottom: 1px solid  blueviolet;
+}
+.leftone4{
+    width: 50%;
+    height:100%;
+    float: left;
+}
+.leftone5{
+    width: 70%;
+    height:100%;
+    float: left;
+}
+.rightone5{
+    width: 30%;
+    height:100%;
+    float: left;
+}
+.leftone5 span ,.rightone5 span{
+    margin-left: 10px;
+}
+.leftone6{
+    width: 40%;
+    height:100%;
+    float: left;
+}
+.rightone6{
+    width: 60%;
+    height:100%;
+    float: left;
+}
+.leftone6 span ,.rightone6 span{
+    margin-left: 10px;
+}
+.h4button button{
+    width: 120px;
+}
+.leftone7{
+    width: 28%;
+    height:100%;
+    float: left;
+}
+.rightone7{
+    width: 72%;
+    height:100%;
+    float: left;
+}
+
+.leftone8{
+    width: 50%;
+    height:100%;
+    float: left;
+}
+.rightone8{
+    width: 50%;
+    height:100%;
+    float: left;
+}
+.leftone8 span ,.rightone8 span{
+    margin-left: 10px;
+}
+.pspan120 button{
+    width: 120px;
+}
+.leftone9{
+    width: 35%;
+    height:100%;
+    float: left;
+}
+.rightone9{
+    width: 65%;
+    height:100%;
+    float: left;
+}
+.leftone9 span ,.rightone9 span{
+    margin-left: 10px;
+}
+.leftone10{
+    width: 90%;
+    height:100%;
+    float: left;
+}
+.leftone10 span{
+    margin-left: 10px;
+}
