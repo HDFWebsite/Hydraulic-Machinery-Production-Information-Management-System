@@ -4,82 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>onebaseinput</title>
+    <link rel="stylesheet" href="../static/css/template2.css">
+    <title> BOM资料管理</title>
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-            list-style:none;
-        }
-        html,body{
-            width: 101%;
-            height:100%;
-        }
-        p{
-            width: 100%;
-            margin-top: 10px;
-            line-height: 30px;
-            font-size: 18px;
-            text-align: center;
-        }
-        .all{
-            width: 100%;
-            height:100%;
-        }
-        .leftone{
-            width: 74%;
-            height:100%;
-            float: left;
-        }
-        .rightone{
-            width: 26%;
-            height:100%;
-            font-size: 14px;
-            float: left;
-        }
-        .rightone div{
-            width: 80%;
-            height:100%;
-        }
-        .spandiv{
-            width: 100%;
-            text-align:center;
-        } 
-        table{
-            width: 98%;
-            margin: 10px auto;
-            border-collapse:collapse;
-            }
-        table,tr, td{
-            border:1px solid gray;
-        }
-        td{
-            height:20px;
-            vertical-align:bottom;
-            text-align:center;
-            }
-        button{
-            width: 60px;
-            margin-top:10px;
-        }
-        input{
-            width: 100px;
-            text-align:center; 
-        }
-        .endliimg {
-            text-indent: 2em;
-        }
-        .endliimg li{
-            line-height: 12px;
-        }
     </style>
 </head>
 <body>
         <p>产品结构BOM管理</p>
     <div class="all">
-        <div class="leftone">
+        <div class="leftone2">
             <div class="spandiv">
-                    <div>
+                    <div class="selecttext">
                         <select name="" id="">
                             <option value="">主件品号</option>
                             <option value="">主件品名</option>
@@ -88,7 +23,7 @@
                         <button type="submit">查询</button>
                         <button type="submit">所有</button>
                         <button type="submit">删除</button>
-                    </div>       
+                    </div>
                     <table>
                             <tr><td><input type="checkbox" name="" id="" ></td>
                                 <td>类别</td><td>主件品号</td><td>主件品名</td><td>单位</td>
@@ -102,17 +37,17 @@
                             <tr><td><input type="checkbox" name="" id=""></td><td>1222222</td><td>11112</td>
                                 <td>3</td><td>1</td><td>11112</td><td>BOM更改</td><td>展开图</td><td>删除</td></tr>
                             <tr><td><input type="checkbox" name="" id=""></td><td>1222222</td><td>1222222</td>
-                                <td>11112</td><td>3</td><td>1</td><td>BOM更改</td><td>展开图</td><td>删除</td></tr>  
+                                <td>11112</td><td>3</td><td>1</td><td>BOM更改</td><td>展开图</td><td>删除</td></tr>
                     </table>
             </div>
         </div>
-        <div class="rightone">
+        <div class="rightone2">
             <p>BOM展开图：</p>
             <div>
                 <span>主件品号：124319[TG110型] </span>
                 <ul>
                   <li><img src="../static/images/WebResjian.gif" alt="1"><a>124319[TG110型]</a></li>
-                </ul>     
+                </ul>
                 <ul class="endliimg">
                     <li><img src="../static/images/WebResource.gif" alt=""><a>[SG100缸筒]×2件</a></li>
                     <li><img src="../static/images/WebResource.gif" alt=""><a>1211003[热镀管]×4根</a></li>
