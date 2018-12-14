@@ -62,8 +62,8 @@ html,body{
     overflow: auto;
     background-color: #E7F5FD;
 }
-.left ul{
-    border-top: 4px solid gray;
+.left div{
+    border-bottom: 4px solid gray;
 }
 .left span{
     font-size: 18px;
@@ -96,4 +96,7 @@ html,body{
     height: 100%;
     background-color: white;
     overflow: hidden;
+}
+.hidden1{
+    display:none;
 }
