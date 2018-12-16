@@ -61,11 +61,13 @@ def create_app(config_name):
     # # 导入蓝图对象，注册蓝图对象
     from system.modules.BomManage import boms_blue
     app.register_blueprint(boms_blue)
-    # from info.modules.passport import passport_blue
-    # app.register_blueprint(passport_blue)
-    # from info.modules.profile import profile_blue
-    # app.register_blueprint(profile_blue)
-    # from info.modules.admin import admin_blue
-    # app.register_blueprint(admin_blue)
+    from system.modules.ConsumeManage import consumes_blue
+    app.register_blueprint(consumes_blue)
+    from system.modules.InformationService import infos_blue
+    app.register_blueprint(infos_blue)
+    from system.modules.PriceManage import price_blue
+    app.register_blueprint(price_blue)
+    from system.modules.PurchaseManage import purchases_blue
+    app.register_blueprint(purchases_blue)
 
     return app
