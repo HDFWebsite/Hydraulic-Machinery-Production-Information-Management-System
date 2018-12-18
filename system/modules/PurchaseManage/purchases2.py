@@ -14,7 +14,6 @@ def fivesix():
 @purchases_blue.route('/fiveseven')
 # @login_required
 def fiveseven():
-
     data = {
         'user_info':'黄德飞'
     }
