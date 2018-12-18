@@ -1,6 +1,5 @@
 from flask import Blueprint
 
-
 # 创建新闻模块的蓝图对象
 
 purchases_blue = Blueprint('purchases_blue',__name__)
