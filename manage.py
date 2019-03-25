@@ -1,12 +1,12 @@
-from flask_migrate import MigrateCommand,Migrate
-
 # 使用管理器
 from flask_script import Manager
+from flask_migrate import MigrateCommand,Migrate
+from prosystem import models
 # 导入工厂函数
-from system import create_app,db,models
+from prosystem import create_app,db
 
 # 调用__init__文件中的工厂函数，获取app
-from system.models import User
+from prosystem.models import User
 
 app = create_app('development')
 
