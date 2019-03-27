@@ -81,7 +81,7 @@ class BomSon(db.Model):
             "main_name": self.main_name,# 主件品名 "
             "son_id": self.son_id,# 主件品号
             "son_name": self.son_name,# 主件品名
-            "num": self.num if self.cate else 1,  # 货品类别
+            "num": self.num if self.num else 1,  # 数量
             "unit": self.unit if self.unit else "kg",# 单位
         }
         return resp_dict
