@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>液压机械生产资料信息管理系统_登录</title>
+	<link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+</head>
+<body>
+	<form method="post" class="login_form">
+		<h1 class="login_title">管理员登录</h1>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+		<input type="text" name="username" placeholder="用户名" class="input_txt">
+		<input type="password" name="password" placeholder="密码" class="input_txt">
+        {% if errmsg %}
+            <div class="error_tip" style="display: block">{{ errmsg }}</div>
+        {% endif %}
+
+		<input type="submit" value="登 录" class="input_sub">
+	</form>
+	<div class="login_bg"></div>
+</body>
+</html>
