@@ -3,6 +3,15 @@
     padding: 0;
     list-style:none;
 }
+a{
+    color: black;
+    text-decoration: none;
+}
+.hidden{
+    display: none;
+    background-color: white;
+    text-align: center;
+}
 body{
     width: 100%;
 }
@@ -13,8 +22,20 @@ p{
     line-height: 50px;
     text-align: center;
 }
-.table{
-    height: 580px;
+table{
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse:collapse;
+    }
+table th{
+    height: 30px;
+    text-align: center;
+    border:1px solid gray;
+    background-color: #d2d5e1;
+}
+table td{
+    height: 30px;
+    text-align: center;
     border:1px solid gray;
 }
 .tablelist ul{
@@ -32,10 +53,13 @@ p{
 }
 .tableend{
     height:30px;
+    width: 100%;
     font-size: 14px;
     line-height: 30px;
     background-color: #d2d5e1;
     border-top: 1px solid gray;
+    position: fixed;
+    bottom: 0;
 }
 
 .tableend input{
@@ -70,22 +94,25 @@ button{
     border-right: 1px solid gray;
 }
 .main{
-    width: 164px;
+    width: 185px;
     float: left;
     line-height: 30px;
     text-align: center;
     border-right: 1px solid gray;
 }
-.tableinfo1{
-    width: 100%;
-    height:480px;
-    overflow:auto;
-    /* border: 1px solid red; */
+.mainn{
+    width: 210px;
+    float: left;
+    line-height: 30px;
+    text-align: center;
+    border-right: 1px solid gray;
 }
-.tableinfo1 ul{
-    width: 100%;
-    height: 30px;
-    border-bottom: 1px solid gray;
+.mainunit{
+    width: 70px;
+    float: left;
+    line-height: 30px;
+    text-align: center;
+    border-right: 1px solid gray;
 }
 .main2{
     width: 71px;
