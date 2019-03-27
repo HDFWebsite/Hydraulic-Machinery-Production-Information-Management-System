@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../static/css/index.css">
-    <script type="text/javascript" src="../static/js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="../static/js/index.js"></script>
-    <title>液压机械生产资料信息管理系统_系统管理</title>
+    <link rel="stylesheet" href="../../static/css/index.css">
+    <script type="text/javascript" src="../../static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../static/js/index.js"></script>
+    <title>液压机械生产资料信息管理系统_主页</title>
 </head>
 <style>
 </style>
@@ -15,12 +15,12 @@
     <div class="all">
         <div class="top">
             <ul class="topleft">
-                <li>当前用户：{{data.user_info}}</li>
+                <li>当前用户：{{resp_dict.user.nick_name}}</li>
             </ul>
-            <span><a href="../static/main.html" target="myframe">液压机械生产资料信息管理系统</a></span>
+            <span><a href="main" target="myframe">液压机械生产资料信息管理系统</a></span>
             <ul class="topright">
-                <li><a href="javascript:if(confirm('你确定要注销账号吗?'))window.close();">注销</a></li>
-                <li><a href="javascript:if(confirm('你确定要退出本系统吗?'))window.close();">退出</a></li>
+                <li><a onclick="if(confirm('是否确认注销？')){window.location.href='/logoff'}">注销</a></li>
+                <li><a href="javascript:;" onclick="logout()">退出</a></li>
                 <li><a href="javascript:history.go(-1);">后退</a></li>
                 <li><a href="javascript:history.go(-1);">前进</a></li>
             </ul>
@@ -30,86 +30,86 @@
                 <div>
                     <span>基础数据管理</span>
                     <ul>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/onebaseinfo" target="myframe">物料基础信息管理</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/onebaseinput" target="myframe">BOM资料录入</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/onebasemanage" target="myframe">BOM资料管理</a></li>
                     </ul>
                 </div>
                 <div>
                     <span>生产资料价格管理</span>
                     <ul>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/twomaterialinput1" target="myframe">原材料单价录入</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/twomaterialinput2" target="myframe">辅助材料单价录入</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/twomaterialinput3" target="myframe">半成品单位加工费录入</a></li>
                     </ul>
                 </div>
                 <div>
                     <span>生产资料采购管理</span>
                     <ul>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/thereproplaninput" target="myframe">生产计划录入</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/theremareqcalculation" target="myframe">材料需求计算</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/therepurchaseorderget" target="myframe">采购订单生成</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/thereproarrivalmanage" target="myframe">采购到货管理</a></li>
                     </ul>
                 </div>
                 <div>
                     <span>生产资料耗用量计算</span>
                     <ul>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fourfinishproinput" target="myframe">已生产产成品录入</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fourrawmccalculation" target="myframe">原材料消耗量计算</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fourrawmcstatistics" target="myframe">原材料消耗量统计</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/foursemimccalculation" target="myframe">半成品消耗量计算</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/foursemimcstatistics" target="myframe">半成品消耗量统计</a></li>
                     </ul>
                 </div>
                 <div>
                     <span>信息查询</span>
                     <ul>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fiveone" target="myframe">生产计划信息查询</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fivetwo" target="myframe">物料需求月汇总表</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fivethere" target="myframe">采购情况统计表</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fivefour" target="myframe">物料月消耗量统计表</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fivefive" target="myframe">物料月消耗费用统计表</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fivesix" target="myframe">半成品月生产量统计表</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fiveseven" target="myframe">半成品月生产费用统计表</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fiveeight" target="myframe">半成品月生产费用明细查询</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fivenine" target="myframe">产成品月生产量统计表</a></li>
-                        <li><img src='../static/images/arrow.gif'>&nbsp;
+                        <li><img src='../../static/images/arrow.gif'>&nbsp;
                             <a href="/fiveten" target="myframe">产成品生产费用明细查询</a></li>
                     </ul>
                 </div>
             </div>
             <div class="middle">
-                    <img src="../static/images/close.gif" alt="">
+                    <img src="../../static/images/close.gif" alt="">
                 </div>
             <div class="right">
                 <div class="intop">
                     <!-- <iframe src="./main.html" id="iframe1" width="100%" height="100%"></iframe> -->
-                    <iframe src="../static/main.html" width="100%" height="100%" name="myframe"></iframe>
+                    <iframe src="/main" width="100%" height="100%" name="myframe" id="myframe"></iframe>
                 </div>
             </div>
         </div>
