@@ -7,3 +7,12 @@ window.onload = function(){
         }
     })
 }
+
+// 管理员退出
+function logout(){
+    $.get("/logout",function(resp){
+        window.location.href = '/'
+    })
+}
+
+
