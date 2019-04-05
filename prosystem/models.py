@@ -46,7 +46,7 @@ class BomMain(db.Model):
     price = db.Column(db.Float, nullable=True)  # 单价
     date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
     company = db.Column(db.String(20), nullable=True)  # 公司名称
-    notes = db.Column(db.String(255))  # 是否有BOM结构
+    is_bom = db.Column(db.String(6),default="N")  # 是否有BOM结构
 
     def to_dict(self):
         resp_dict = {
@@ -58,7 +58,8 @@ class BomMain(db.Model):
             "company": self.company if self.company else "未知", # 公司名称
             "spec": self.spec if self.spec else "BGS",# 货品规格
             "date":self.date,
-            "price":self.price
+            "price":self.price,
+            "is_bom":self.is_bom
         }
         return resp_dict
 
@@ -71,6 +72,8 @@ class BomSon(db.Model):
     main_name = db.Column(db.String(32), nullable=False)  # 主件品名
     son_id = db.Column(db.Integer)  # 子件品号
     son_name = db.Column(db.String(32), nullable=False)  # 子件品名
+    son_cate = db.Column(db.String(16), nullable=False)  # 子件类型
+    son_company = db.Column(db.String(20), nullable=False)  # 子件公司
     num = db.Column(db.Integer, nullable=False)  # 子件组成量
     unit = db.Column(db.String(16), nullable=False)  # 子件单位
 
@@ -107,7 +110,7 @@ class ProductionPlan(db.Model):
             "unit": self.unit if self.unit else "kg",# 主件品号
             "num": self.num,# 主件品名
             "date": self.date,  # 货品类别
-            "is_need": self.is_need ,# 单位
+            "is_need": "是" if self.is_need else "否" ,# 是否进行需求计算
         }
         return resp_dict
 
@@ -116,17 +119,42 @@ class MaterialRequire(db.Model):
     __tablename__ = "tb_materialrequire"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
+    plan_id = db.Column(db.Integer)  # 主件品号
+    plan_name = db.Column(db.String(32), nullable=False)  # 主件品名
+    plan_time = db.Column(db.DateTime, default=datetime.now)  # 下单日期
+    plan_unit = db.Column(db.String(16), nullable=False)  # 单位
+    plan_num = db.Column(db.Integer, nullable=False)  # 数量
     require_id = db.Column(db.Integer)  # 主件品号
     require_name = db.Column(db.String(32), nullable=False)  # 主件品名
-    company = db.Column(db.String(16), nullable=True)  # 公司名称
     unit = db.Column(db.String(16), nullable=False)  # 单位
     num = db.Column(db.Integer, nullable=False)  # 数量
+    company = db.Column(db.String(16), nullable=True)  # 公司名称
     build_time = db.Column(db.DateTime, default=datetime.now)  # 生成日期
     is_order = db.Column(db.Boolean, default=False)  # 是否下单
-    order_time = db.Column(db.DateTime, default=datetime.now)  # 下单日期
+    order_time = db.Column(db.DateTime)  # 下单日期
     is_get = db.Column(db.Boolean, default=False)  # 是否到货
-    get_time = db.Column(db.DateTime, default=datetime.now)  # 到货日期
+    get_time = db.Column(db.DateTime)  # 到货日期
 
+    def to_dict(self):
+        resp_dict = {
+            "id": self.id, # 编号
+            "plan_id": self.plan_id,# 主件品号
+            "plan_name": self.plan_name,# 主件品号
+            "plan_time": self.plan_time,# 主件品号
+            "plan_unit": self.plan_unit,# 主件品号
+            "plan_num": self.plan_num,# 主件品号
+            "require_id": self.require_id,# 主件品号
+            "require_name": self.require_name,# 主件品号
+            "unit": self.unit,# 主件品号
+            "num": self.num,# 主件品号
+            "company": self.company,# 主件品号
+            "build_time": self.build_time,# 主件品名 "
+            "is_order": "是" if self.is_order else "否",# 主件品名 "
+            "order_time": self.order_time,# 主件品名 "
+            "is_get": "是" if self.is_get else "否",# 主件品名 "
+            "get_time": self.get_time,# 主件品名 "
+        }
+        return resp_dict
 
 class FinishedProduct(db.Model):
     """已生产产成品"""
@@ -146,6 +174,23 @@ class FinishedProduct(db.Model):
     unit_cost = db.Column(db.Float, nullable=True)  # 单位成本
     total_cost = db.Column(db.Float, nullable=True)  # 总费用
 
+    def to_dict(self):
+        resp_dict = {
+            "id": self.id, # 编号
+            "finished_id": self.finished_id,# 主件品号
+            "finished_name": self.finished_name,# 主件品名 "
+            "date": self.date,# 主件品名 "
+            "num": self.num,# 主件品名 "
+            "unit": self.unit,# 主件品名 "
+            "cal_date": self.cal_date,# 主件品名 "
+            "sign": self.sign,# 主件品名 "
+            "raw_cost": self.raw_cost,# 主件品名 "
+            "aux_cost": self.aux_cost,# 主件品名 "
+            "sem_cost": self.sem_cost,# 主件品名 "
+            "unit_cost": self.unit_cost,# 主件品名 "
+            "total_cost": self.total_cost,  # 主件品名 "
+        }
+        return resp_dict
 
 class MaterialCost(db.Model):
     """由产成品算出的各种原材料、辅助材料信息"""
