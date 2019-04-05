@@ -156,7 +156,7 @@ h4{
     text-align:center;
 }
 .leftone3{
-    width: 42%;
+    width: 49%;
     height:100%;
     float: left;
     border: 1px solid  blueviolet;
@@ -165,7 +165,7 @@ h4{
    margin-bottom: 5px;
 }
 .rightone3{
-    width: 57.6%;
+    width: 50.6%;
     height:100%;
     float: left;
     border-top: 1px solid  blueviolet;
@@ -180,17 +180,20 @@ h4{
     height:100%;
     float: left;
 }
+.getorder{
+    width: 96%;
+    height:100%;
+    margin: 0 10px;
+}
+.getorder span{
+   margin-left: 10px;
+}
 .leftone5{
-    width: 70%;
+     width: 96%;
     height:100%;
-    float: left;
+    margin: 0 10px;
 }
-.rightone5{
-    width: 30%;
-    height:100%;
-    float: left;
-}
-.leftone5 span ,.rightone5 span{
+.leftone5 span{
     margin-left: 10px;
 }
 .leftone6{
