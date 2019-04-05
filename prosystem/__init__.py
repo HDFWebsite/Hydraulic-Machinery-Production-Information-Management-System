@@ -67,5 +67,7 @@ def create_app(config_name):
     app.register_blueprint(price_blue)
     from prosystem.modules.PurchaseManage import purchases_blue
     app.register_blueprint(purchases_blue)
+    from prosystem.modules.CostManage import cost_blue
+    app.register_blueprint(cost_blue)
 
     return app
