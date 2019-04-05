@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../static/css/template2.css">
+    <title> BOM资料管理</title>
+    <script type="text/javascript" src="../../static/js/other/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../static/js/one/onebasemanage.js"></script>
+</head>
+<body>
+        <p>产品结构BOM管理</p>
+    <div class="all">
+        <div class="leftone2">
+            <div class="spandiv">
+                    <div class="selecttext">
+                        <select name="" id="my_sel">
+                            <option selected=selected value="1">主件品号</option>
+                            <option value="2">主件品名</option>
+                        </select>
+                        <input type="text" id="my_query_text">
+                        <button type="submit"><a id="my_query_name">查询</a></button>
+                        <button type="submit"><a href="/onebasemanage">所有</a></button>
+                    </div>
+                    <table>
+                            <tr><td>序号</td>
+                                <td>类别</td><td>主件品号</td><td>主件品名</td><td>单位</td>
+                                <td>录入时间</td><td>展开图</td><td>删除</td>
+                            </tr>
+                        {% for data in data.main.boms_dict_list%}
+                            <tr><td>{{loop.index}}</td>
+                                <td>{{ data.cate}}</td><td class="my_main_id">{{ data.main_id}}</td><td>{{ data.main_name}}</td>
+                                <td>{{ data.unit}}</td><td>{{ data.date}}</td>
+                                <td><a href="/onebasemanage?main_id={{data.main_id}}&main_name={{data.main_name}}">展开图</a></td>
+                                <td class="del_bt">删除</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+        </div>
+        <div class="rightone2">
+            <p>BOM展开图：</p>
+            <div>
+                <span>主件品号：{{ data.son.main_id}}[{{data.son.main_name}}] </span>
+                <ul>
+                  <li><img src="../../static/images/WebResjian.gif" alt="1"><a>{{ data.son.main_id}}[{{data.son.main_name}}] </a></li>
+                </ul>
+                <ul class="endliimg">
+
+                {% for data in data.son.boms_dict_list %}
+                    {% if loop.last %}
+                    <li><img src="../../static/images/WebResend.gif" alt="">
+                        <a>{{data.son_name}}×{{data.num}}件</a>
+                    </li>
+                    {% else %}
+                    <li><img src="../../static/images/WebResource.gif" alt="">
+                        <a>{{data.son_name}}×{{data.num}}件</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
