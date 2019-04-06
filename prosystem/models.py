@@ -76,6 +76,7 @@ class BomSon(db.Model):
     son_company = db.Column(db.String(20), nullable=False)  # 子件公司
     num = db.Column(db.Integer, nullable=False)  # 子件组成量
     unit = db.Column(db.String(16), nullable=False)  # 子件单位
+    price = db.Column(db.Float, nullable=True)  # 单价
 
     def to_dict(self):
         resp_dict = {
@@ -166,12 +167,12 @@ class FinishedProduct(db.Model):
     date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
     num = db.Column(db.Integer, nullable=False)  # 数量
     unit = db.Column(db.String(16), nullable=False)  # 单位
-    cal_date = db.Column(db.DateTime, default=datetime.now)  # BOM计算日期
-    sign = db.Column(db.String(255))  # 计算标志
+    is_cal = db.Column(db.Boolean, default=False)  # 半成品计算标志
+    cal_date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
     raw_cost = db.Column(db.Float, nullable=True)  # 汇总原材料费用
     aux_cost = db.Column(db.Float, nullable=True)  # 汇总辅助材料费
     sem_cost = db.Column(db.Float, nullable=True)  # 汇总半成品费用
-    unit_cost = db.Column(db.Float, nullable=True)  # 单位成本
+    pro_cost = db.Column(db.Float, nullable=True)  # 单位成本
     total_cost = db.Column(db.Float, nullable=True)  # 总费用
 
     def to_dict(self):
@@ -183,11 +184,11 @@ class FinishedProduct(db.Model):
             "num": self.num,# 主件品名 "
             "unit": self.unit,# 主件品名 "
             "cal_date": self.cal_date,# 主件品名 "
-            "sign": self.sign,# 主件品名 "
+            "is_cal": "是" if self.is_cal else "否",# 主件品名 "
             "raw_cost": self.raw_cost,# 主件品名 "
             "aux_cost": self.aux_cost,# 主件品名 "
             "sem_cost": self.sem_cost,# 主件品名 "
-            "unit_cost": self.unit_cost,# 主件品名 "
+            "unit_cost": self.pro_cost,# 主件品名 "
             "total_cost": self.total_cost,  # 主件品名 "
         }
         return resp_dict
@@ -197,49 +198,116 @@ class MaterialCost(db.Model):
     __tablename__ = "tb_materialcost"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
+    fpid = db.Column(db.Integer)  # 产成品品号
     finished_id = db.Column(db.Integer)  # 产成品品号
     finished_name = db.Column(db.String(32), nullable=False)  # 产成品品名
     num = db.Column(db.Integer, nullable=False)  # 数量
     unit = db.Column(db.String(16), nullable=False)  # 单位
+    date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
     son_id = db.Column(db.Integer)  # 子件编号
     son_name = db.Column(db.String(32), nullable=False)  # 子件品名
     son_num = db.Column(db.Integer, nullable=False)  # 子件数量
     son_unit = db.Column(db.String(16), nullable=False)  # 子件单位
+    son_cate = db.Column(db.String(16), nullable=False)  # 子件单位
     unit_price = db.Column(db.Float, nullable=False)  # 单价
     total_price = db.Column(db.Float, nullable=True)  # 总价
-
+    def to_dict(self):
+        resp_dict = {
+            "id": self.id, # 编号
+            "fpid": self.fpid, # 编号
+            "finished_id": self.finished_id,# 主件品号
+            "finished_name": self.finished_name,# 主件品名 "
+            "date": self.date,# 主件品名 "
+            "num": self.num,# 主件品名 "
+            "unit": self.unit,# 主件品名 "
+            "son_id": self.son_id,# 主件品名 "
+            "son_name": self.son_name,# 主件品名 "
+            "son_num": self.son_num,# 主件品名 "
+            "son_unit": self.son_unit,# 主件品名 "
+            "son_cate": self.son_cate,# 主件品名 "
+            "unit_price": self.unit_price,# 主件品名 "
+            "total_price": self.total_price,# 主件品名 "
+        }
+        return resp_dict
 
 class SemifinishedProduct(db.Model):
     """由产成品算出的已生产半成品"""
     __tablename__ = "tb_semifinishedproduct"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
+    fpid = db.Column(db.Integer)  # 产成品品号
     finished_id = db.Column(db.Integer)  # 产成品品号
     finished_name = db.Column(db.String(32), nullable=False)  # 产成品品名
+    unit = db.Column(db.String(16), nullable=False)  # 单位
+    num = db.Column(db.String(16), nullable=False)  # 单位
+    date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
     son_id = db.Column(db.Integer)  # 子件半成品编号
     son_name = db.Column(db.String(32), nullable=False)  # 子件半成品品名
     son_num = db.Column(db.Integer, nullable=False)  # 子件半成品数量
-    date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
-    unit = db.Column(db.String(16), nullable=False)  # 单位
+    son_unit = db.Column(db.String(16), nullable=False)  # 子件半成品数量
+    is_cal = db.Column(db.Boolean, default=False)  # 半成品计算标志
     cal_date = db.Column(db.DateTime, default=datetime.now)  # BOM计算日期
     raw_cost = db.Column(db.Float, nullable=True)  # 汇总原材料费用
     aux_cost = db.Column(db.Float, nullable=True)  # 汇总辅助材料费
     unit_cost = db.Column(db.Float, nullable=True)  # 单位加工费用
+    pro_cost = db.Column(db.Float, nullable=True)  # 单位费用
     total_cost = db.Column(db.Float, nullable=True)  # 总费用
-
+    def to_dict(self):
+        resp_dict = {
+            "id": self.id, # 编号
+            "fpid": self.fpid, # 编号
+            "finished_id": self.finished_id,# 主件品号
+            "finished_name": self.finished_name,# 主件品名 "
+            "son_id": self.son_id,  # 主件品名 "
+            "son_name": self.son_name,  # 主件品名 "
+            "son_num": self.son_num,  # 主件品名 "
+            "son_unit": self.son_unit,  # 主件品名 "
+            "date": self.date,# 主件品名 "
+            "unit": self.unit,# 主件品名 "
+            "num": self.num,# 主件品名 "
+            "is_cal": "是" if self.is_cal else "否",# 主件品名 "
+            "cal_date": self.cal_date,# 主件品名 "
+            "raw_cost": self.raw_cost,# 主件品名 "
+            "aux_cost": self.aux_cost,# 主件品名 "
+            "unit_cost": self.unit_cost,# 主件品名 "
+            "pro_cost": self.pro_cost,# 主件品名 "
+            "total_cost": self.total_cost,# 主件品名 "
+        }
+        return resp_dict
 
 class SemifinishedCost(db.Model):
     """由已生产半成品算出的各种原材料、辅助材料信息"""
     __tablename__ = "tb_semifinishedcost"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
+    spid = db.Column(db.Integer)  # 半成品品号
     semi_id = db.Column(db.Integer)  # 半成品品号
     semi_name = db.Column(db.String(32), nullable=False)  # 半成品品名
     num = db.Column(db.Integer, nullable=False)  # 数量
     unit = db.Column(db.String(16), nullable=False)  # 单位
+    date = db.Column(db.DateTime, default=datetime.now)  # BOM计算日期
     son_id = db.Column(db.Integer)  # 子件编号
     son_name = db.Column(db.String(32), nullable=False)  # 子件品名
     son_num = db.Column(db.Integer, nullable=False)  # 子件数量
     son_unit = db.Column(db.String(16), nullable=False)  # 子件单位
+    son_cate = db.Column(db.String(16), nullable=False)  # 子件单位
     unit_price = db.Column(db.Float, nullable=False)  # 单价
     total_price = db.Column(db.Float, nullable=False)  # 总价
+    def to_dict(self):
+        resp_dict = {
+            "id": self.id, # 编号
+            "spid": self.spid, # 编号
+            "semi_id": self.semi_id,# 主件品号
+            "semi_name": self.semi_name,# 主件品名 "
+            "date": self.date,# 主件品名 "
+            "num": self.num,# 主件品名 "
+            "unit": self.unit,# 主件品名 "
+            "son_id": self.son_id,# 主件品名 "
+            "son_name": self.son_name,# 主件品名 "
+            "son_num": self.son_num,# 主件品名 "
+            "son_unit": self.son_unit,# 主件品名 "
+            "son_cate": self.son_cate,# 主件品名 "
+            "unit_price": self.unit_price,# 主件品名 "
+            "total_price": self.total_price,# 主件品名 "
+        }
+        return resp_dict
