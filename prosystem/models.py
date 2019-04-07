@@ -102,6 +102,7 @@ class ProductionPlan(db.Model):
     num = db.Column(db.Integer, nullable=False)  # 数量
     date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
     is_need = db.Column(db.Boolean, default=False)  # 是否进行需求计算
+    is_add = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
 
     def to_dict(self):
         resp_dict = {
@@ -112,6 +113,7 @@ class ProductionPlan(db.Model):
             "num": self.num,# 主件品名
             "date": self.date,  # 货品类别
             "is_need": "是" if self.is_need else "否" ,# 是否进行需求计算
+            "is_add": "是" if self.is_add else "否",
         }
         return resp_dict
 
@@ -129,12 +131,15 @@ class MaterialRequire(db.Model):
     require_name = db.Column(db.String(32), nullable=False)  # 主件品名
     unit = db.Column(db.String(16), nullable=False)  # 单位
     num = db.Column(db.Integer, nullable=False)  # 数量
+    cate = db.Column(db.String(16), nullable=False)  # 子件类型
     company = db.Column(db.String(16), nullable=True)  # 公司名称
-    build_time = db.Column(db.DateTime, default=datetime.now)  # 生成日期
+    build_time = db.Column(db.DateTime, default=datetime.now) # 生成日期
     is_order = db.Column(db.Boolean, default=False)  # 是否下单
     order_time = db.Column(db.DateTime)  # 下单日期
     is_get = db.Column(db.Boolean, default=False)  # 是否到货
     get_time = db.Column(db.DateTime)  # 到货日期
+    is_addo = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
+    is_addg = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
 
     def to_dict(self):
         resp_dict = {
@@ -154,6 +159,8 @@ class MaterialRequire(db.Model):
             "order_time": self.order_time,# 主件品名 "
             "is_get": "是" if self.is_get else "否",# 主件品名 "
             "get_time": self.get_time,# 主件品名 "
+            "is_addo": "是" if self.is_addo else "否",
+            "is_addg": "是" if self.is_addg else "否",
         }
         return resp_dict
 
@@ -174,6 +181,8 @@ class FinishedProduct(db.Model):
     sem_cost = db.Column(db.Float, nullable=True)  # 汇总半成品费用
     pro_cost = db.Column(db.Float, nullable=True)  # 单位成本
     total_cost = db.Column(db.Float, nullable=True)  # 总费用
+    is_add = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
+    is_addp = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
 
     def to_dict(self):
         resp_dict = {
@@ -188,8 +197,10 @@ class FinishedProduct(db.Model):
             "raw_cost": self.raw_cost,# 主件品名 "
             "aux_cost": self.aux_cost,# 主件品名 "
             "sem_cost": self.sem_cost,# 主件品名 "
-            "unit_cost": self.pro_cost,# 主件品名 "
+            "pro_cost": self.pro_cost,# 主件品名 "
             "total_cost": self.total_cost,  # 主件品名 "
+            "is_add": "是" if self.is_add else "否",
+            "is_addp": "是" if self.is_addp else "否",
         }
         return resp_dict
 
@@ -211,6 +222,8 @@ class MaterialCost(db.Model):
     son_cate = db.Column(db.String(16), nullable=False)  # 子件单位
     unit_price = db.Column(db.Float, nullable=False)  # 单价
     total_price = db.Column(db.Float, nullable=True)  # 总价
+    is_add = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
+    is_addp = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
     def to_dict(self):
         resp_dict = {
             "id": self.id, # 编号
@@ -227,6 +240,8 @@ class MaterialCost(db.Model):
             "son_cate": self.son_cate,# 主件品名 "
             "unit_price": self.unit_price,# 主件品名 "
             "total_price": self.total_price,# 主件品名 "
+            "is_add": "是" if self.is_add else "否",
+            "is_addp": "是" if self.is_addp else "否",
         }
         return resp_dict
 
@@ -250,8 +265,11 @@ class SemifinishedProduct(db.Model):
     raw_cost = db.Column(db.Float, nullable=True)  # 汇总原材料费用
     aux_cost = db.Column(db.Float, nullable=True)  # 汇总辅助材料费
     unit_cost = db.Column(db.Float, nullable=True)  # 单位加工费用
+    all_cost = db.Column(db.Float, nullable=True)  # 所有加工费用
     pro_cost = db.Column(db.Float, nullable=True)  # 单位费用
     total_cost = db.Column(db.Float, nullable=True)  # 总费用
+    is_add = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
+    is_addp = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
     def to_dict(self):
         resp_dict = {
             "id": self.id, # 编号
@@ -270,8 +288,11 @@ class SemifinishedProduct(db.Model):
             "raw_cost": self.raw_cost,# 主件品名 "
             "aux_cost": self.aux_cost,# 主件品名 "
             "unit_cost": self.unit_cost,# 主件品名 "
+            "all_cost": self.all_cost,# 主件品名 "
             "pro_cost": self.pro_cost,# 主件品名 "
             "total_cost": self.total_cost,# 主件品名 "
+            "is_add": "是" if self.is_add else "否",# 主件品名 "
+            "is_addp": "是" if self.is_addp else "否",# 主件品名 "
         }
         return resp_dict
 
@@ -290,9 +311,11 @@ class SemifinishedCost(db.Model):
     son_name = db.Column(db.String(32), nullable=False)  # 子件品名
     son_num = db.Column(db.Integer, nullable=False)  # 子件数量
     son_unit = db.Column(db.String(16), nullable=False)  # 子件单位
-    son_cate = db.Column(db.String(16), nullable=False)  # 子件单位
+    son_cate = db.Column(db.String(16), nullable=False)  # 子件类型
     unit_price = db.Column(db.Float, nullable=False)  # 单价
     total_price = db.Column(db.Float, nullable=False)  # 总价
+    is_add = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
+    is_addp = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
     def to_dict(self):
         resp_dict = {
             "id": self.id, # 编号
@@ -309,5 +332,103 @@ class SemifinishedCost(db.Model):
             "son_cate": self.son_cate,# 主件品名 "
             "unit_price": self.unit_price,# 主件品名 "
             "total_price": self.total_price,# 主件品名 "
+            "is_add": "是" if self.is_add else "否",
+            "is_addp": "是" if self.is_addp else "否",
+        }
+        return resp_dict
+
+
+class AllNeedInfo(db.Model):
+    """由已生产半成品算出的各种原材料、辅助材料信息"""
+    __tablename__ = "tb_allneedinfo"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
+    main_id = db.Column(db.Integer)  # 品号
+    main_name = db.Column(db.String(32), nullable=False)  # 品名
+    unit = db.Column(db.String(16), nullable=False)  # 单位
+    cate = db.Column(db.String(16), nullable=False)  # 类型
+    year = db.Column(db.String(16), nullable=False)  # 年
+    type = db.Column(db.String(16), nullable=False)  #
+    month01 = db.Column(db.Integer,default=0)  # 一月
+    month02 = db.Column(db.Integer,default=0)  # 二月
+    month03 = db.Column(db.Integer,default=0)  # 三月
+    month04 = db.Column(db.Integer,default=0)  # 品号
+    month05 = db.Column(db.Integer,default=0)  # 品号
+    month06 = db.Column(db.Integer,default=0)  # 品号
+    month07 = db.Column(db.Integer,default=0)  # 品号
+    month08 = db.Column(db.Integer,default=0)  # 品号
+    month09 = db.Column(db.Integer,default=0)  # 品号
+    month10 = db.Column(db.Integer,default=0)  # 品号
+    month11 = db.Column(db.Integer,default=0)  # 品号
+    month12 = db.Column(db.Integer,default=0)  # 品号
+    def to_dict(self):
+        resp_dict = {
+            "id": self.id, # 编号
+            "main_id": self.main_id, # 编号
+            "main_name": self.main_name,# 主件品号
+            "unit": self.unit,# 主件品名 "
+            "cate": self.cate,  # 主件品名 "
+            "year": self.year,# 主件品名 "
+            "type": self.type,  # 主件品名 "
+            "month01": self.month01,# 主件品名 "
+            "month02": self.month02 ,# 主件品名 "
+            "month03": self.month03 ,# 主件品名 "
+            "month04": self.month04 ,# 主件品名 "
+            "month05": self.month05 ,# 主件品名 "
+            "month06": self.month06 ,# 主件品名 "
+            "month07": self.month07  ,# 主件品名 "
+            "month08": self.month08  ,# 主件品名 "
+            "month09": self.month09  ,# 主件品名 "
+            "month10": self.month10  ,# 主件品名 "
+            "month11": self.month11  ,# 主件品名 "
+            "month12": self.month12   ,# 主件品名 "
+        }
+        return resp_dict
+
+
+class AllCostInfo(db.Model):
+    """由已生产半成品算出的各种原材料、辅助材料信息"""
+    __tablename__ = "tb_allcostinfo"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
+    main_id = db.Column(db.Integer)  # 品号
+    main_name = db.Column(db.String(32), nullable=False)  # 品名
+    unit = db.Column(db.String(16), nullable=False)  # 单位
+    cate = db.Column(db.String(16), nullable=False)  # 类型
+    year = db.Column(db.String(16), nullable=False)  # 类型
+    type = db.Column(db.String(16), nullable=False)  #
+    month01 = db.Column(db.Integer,default=0)  # 品号
+    month02 = db.Column(db.Integer,default=0)  # 品号
+    month03 = db.Column(db.Integer,default=0)  # 品号
+    month04 = db.Column(db.Integer,default=0)  # 品号
+    month05 = db.Column(db.Integer,default=0)  # 品号
+    month06 = db.Column(db.Integer,default=0)  # 品号
+    month07 = db.Column(db.Integer,default=0)  # 品号
+    month08 = db.Column(db.Integer,default=0)  # 品号
+    month09 = db.Column(db.Integer,default=0)  # 品号
+    month10 = db.Column(db.Integer,default=0)  # 品号
+    month11 = db.Column(db.Integer,default=0)  # 品号
+    month12 = db.Column(db.Integer,default=0)  # 品号
+    def to_dict(self):
+        resp_dict = {
+            "id": self.id, # 编号
+            "main_id": self.main_id, # 编号
+            "main_name": self.main_name,# 主件品号
+            "unit": self.unit,# 主件品名 "
+            "cate": self.cate,  # 主件品名 "
+            "year": self.year,# 主件品名 "
+            "type": self.type,# 主件品名 "
+            "month01": self.month01,# 主件品名 "
+            "month02": self.month02 ,# 主件品名 "
+            "month03": self.month03 ,# 主件品名 "
+            "month04": self.month04 ,# 主件品名 "
+            "month05": self.month05 ,# 主件品名 "
+            "month06": self.month06 ,# 主件品名 "
+            "month07": self.month07  ,# 主件品名 "
+            "month08": self.month08  ,# 主件品名 "
+            "month09": self.month09  ,# 主件品名 "
+            "month10": self.month10  ,# 主件品名 "
+            "month11": self.month11  ,# 主件品名 "
+            "month12": self.month12   ,# 主件品名 "
         }
         return resp_dict
