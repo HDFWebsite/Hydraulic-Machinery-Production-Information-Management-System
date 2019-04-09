@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../static/css/template2.css">
+    <script type="text/javascript" src="../../static/js/other/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../static/js/there/thereplancal.js"></script>
+    <title>生成采购订单</title>
+    <style>
+    </style>
+</head>
+<body>
+        <p><span>{{data.year}}-{{data.month}}月</span>采购订单</p>
+    <div class="all">
+        <div class="getorder">
+            <span>采购订单：</span>
+            <div class="spandiv">    
+                    <table>
+                            <tr>
+                                <td>序号</td><td>订单号</td><td>供应商</td><td>订单日期</td>
+                                <td>货品编号</td><td>货品名称</td><td>单位</td><td>数量</td>
+                                <td>是否下单</td><td>下单日期</td><td>下单</td>
+                            </tr>
+                            {% for i in data.boms_dict_list %}
+                            <tr>
+                                <td>{{ loop.index}}</td>
+                                <td class="changeid">{{ i.id}}</td>
+                                <td>{{ i.company}}</td>
+                                <td>{{ i.build_time}}</td>
+                                <td>{{ i.require_id}}</td>
+                                <td>{{ i.require_name}}</td>
+                                <td>{{ i.unit}}</td>
+                                <td>{{ i.num}}</td>
+
+                                <td>{{ i.is_order}}</td>
+                                <td>{{ i.order_time}}</td>
+                                <td class="changeorder">下单</td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
