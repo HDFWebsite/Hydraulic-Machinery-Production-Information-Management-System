@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../static/css/template2.css">
+    <script type="text/javascript" src="../../static/js/other/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../static/js/there/thereplancal.js"></script>
+    <title>onebaseinput</title>
+    <style>
+        html,body{
+            width: 115%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+        <p>
+            <span><button id="requireCal">物料需求计算</button>
+            </span><span>{{data.year}}-{{data.month}}月</span>
+        </p>
+    <div class="all">
+        <div class="leftone6">
+            <span>本月产品生产计划：</span>
+            <div class="spandiv">    
+                    <table>
+                            <tr>
+                                <td>产品品号</td><td>产品品名</td><td>单位</td><td>数量</td><td>录入时间</td><td>是否计算</td>
+                            </tr>
+                            {% for i in data.main.boms_dict_list %}
+                            <tr><td>{{ i.main_id}}</td>
+                                <td>{{ i.main_name}}</td>
+                                <td>{{ i.unit}}</td>
+                                <td>{{ i.num}}</td>
+                                <td>{{ i.date}}</td>
+                                <td>{{ i.is_need}}</td></tr>
+                            {% endfor %}
+                    </table>
+            </div>
+        </div>
+        <div class="rightone6">
+                <span>本月原材料需求：</span>
+                <div class="spandiv">      
+                        <table>          
+                            <tr><td>产品品号</td>
+                                <td>产品品名</td><td>录入日期</td><td>单位</td>
+                                <td>数量</td><td>物料品号</td><td>物料品名</td><td>单位</td>
+                                <td>数量</td><td>计算时间</td>
+                            </tr>
+                            {% for i in data.son.boms_dict_list %}
+                            <tr>
+                                <td>{{ i.plan_id}}</td>
+                                <td>{{ i.plan_name}}</td>
+                                <td>{{ i.plan_time}}</td>
+                                <td>{{ i.plan_unit}}</td>
+                                <td>{{ i.plan_num}}</td>
+                                <td>{{ i.require_id}}</td>
+                                <td>{{ i.require_name}}</td>
+                                <td>{{ i.unit}}</td>
+                                <td>{{ i.num}}</td>
+                                <td>{{ i.build_time}}</td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
