@@ -74,7 +74,7 @@ class BomSon(db.Model):
     son_name = db.Column(db.String(32), nullable=False)  # 子件品名
     son_cate = db.Column(db.String(16), nullable=False)  # 子件类型
     son_company = db.Column(db.String(20), nullable=False)  # 子件公司
-    num = db.Column(db.Integer, nullable=False)  # 子件组成量
+    num = db.Column(db.Integer,default=0, nullable=False)  # 子件组成量
     unit = db.Column(db.String(16), nullable=False)  # 子件单位
     price = db.Column(db.Float, nullable=True)  # 单价
 
@@ -99,7 +99,7 @@ class ProductionPlan(db.Model):
     plan_id = db.Column(db.Integer)  # 主件品号
     plan_name = db.Column(db.String(32), nullable=False)  # 主件品名
     unit = db.Column(db.String(16), nullable=False)  # 单位
-    num = db.Column(db.Integer, nullable=False)  # 数量
+    num = db.Column(db.Integer,default=0, nullable=False)  # 数量
     date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
     is_need = db.Column(db.Boolean, default=False)  # 是否进行需求计算
     is_add = db.Column(db.Boolean, default=False)  # 是否计算到年需求统计
@@ -130,7 +130,7 @@ class MaterialRequire(db.Model):
     require_id = db.Column(db.Integer)  # 主件品号
     require_name = db.Column(db.String(32), nullable=False)  # 主件品名
     unit = db.Column(db.String(16), nullable=False)  # 单位
-    num = db.Column(db.Integer, nullable=False)  # 数量
+    num = db.Column(db.Integer,default=0, nullable=False)  # 数量
     cate = db.Column(db.String(16), nullable=False)  # 子件类型
     company = db.Column(db.String(16), nullable=True)  # 公司名称
     build_time = db.Column(db.DateTime, default=datetime.now) # 生成日期
@@ -172,7 +172,7 @@ class FinishedProduct(db.Model):
     finished_id = db.Column(db.Integer)  # 产成品品号
     finished_name = db.Column(db.String(32), nullable=False)  # 产成品品名
     date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
-    num = db.Column(db.Integer, nullable=False)  # 数量
+    num = db.Column(db.Integer,default=0,nullable=False)  # 数量
     unit = db.Column(db.String(16), nullable=False)  # 单位
     is_cal = db.Column(db.Boolean, default=False)  # 半成品计算标志
     cal_date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
@@ -212,12 +212,12 @@ class MaterialCost(db.Model):
     fpid = db.Column(db.Integer)  # 产成品品号
     finished_id = db.Column(db.Integer)  # 产成品品号
     finished_name = db.Column(db.String(32), nullable=False)  # 产成品品名
-    num = db.Column(db.Integer, nullable=False)  # 数量
+    num = db.Column(db.Integer,default=0,nullable=False)  # 数量
     unit = db.Column(db.String(16), nullable=False)  # 单位
     date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
     son_id = db.Column(db.Integer)  # 子件编号
     son_name = db.Column(db.String(32), nullable=False)  # 子件品名
-    son_num = db.Column(db.Integer, nullable=False)  # 子件数量
+    son_num = db.Column(db.Integer,default=0,nullable=False)  # 子件数量
     son_unit = db.Column(db.String(16), nullable=False)  # 子件单位
     son_cate = db.Column(db.String(16), nullable=False)  # 子件单位
     unit_price = db.Column(db.Float, nullable=False)  # 单价
@@ -254,11 +254,11 @@ class SemifinishedProduct(db.Model):
     finished_id = db.Column(db.Integer)  # 产成品品号
     finished_name = db.Column(db.String(32), nullable=False)  # 产成品品名
     unit = db.Column(db.String(16), nullable=False)  # 单位
-    num = db.Column(db.String(16), nullable=False)  # 单位
+    num = db.Column(db.Integer,default=0,nullable=False)  # 单位
     date = db.Column(db.DateTime, default=datetime.now)  # 录入日期
     son_id = db.Column(db.Integer)  # 子件半成品编号
     son_name = db.Column(db.String(32), nullable=False)  # 子件半成品品名
-    son_num = db.Column(db.Integer, nullable=False)  # 子件半成品数量
+    son_num = db.Column(db.Integer,default=0, nullable=False)  # 子件半成品数量
     son_unit = db.Column(db.String(16), nullable=False)  # 子件半成品数量
     is_cal = db.Column(db.Boolean, default=False)  # 半成品计算标志
     cal_date = db.Column(db.DateTime, default=datetime.now)  # BOM计算日期
@@ -304,7 +304,7 @@ class SemifinishedCost(db.Model):
     spid = db.Column(db.Integer)  # 半成品品号
     semi_id = db.Column(db.Integer)  # 半成品品号
     semi_name = db.Column(db.String(32), nullable=False)  # 半成品品名
-    num = db.Column(db.Integer, nullable=False)  # 数量
+    num = db.Column(db.Integer,default=0, nullable=False)  # 数量
     unit = db.Column(db.String(16), nullable=False)  # 单位
     date = db.Column(db.DateTime, default=datetime.now)  # BOM计算日期
     son_id = db.Column(db.Integer)  # 子件编号
