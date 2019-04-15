@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../static/css/template2.css">
+    <title>onebaseinput</title>
+    <style>
+         html,body{
+            width: 106%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+        <p><span>分类汇总统计</span><span>{{data.year}}-{{data.month}}月</span></p>
+    <div class="all">
+        <div class="leftone8">
+            <h4><span>已消耗原材料汇总表：</span><a href="">打印表格</a></h4>
+            <div class="spandiv">    
+                    <table>
+                        <tr>
+                            <td>会计科目</td><td>材料品名</td>
+                            <td>日期</td><td>数量</td><td>单价</td>
+                            <td>单位</td><td>总金额</td>
+                        </tr>
+                        {% for i in data.main.boms_dict_list %}
+                            <tr><td>{{ i.son_id}}</td>
+                                <td>{{ i.son_name}}</td>
+                                <td>{{ i.date}}</td>
+                                <td>{{ i.son_num}}</td>
+                                <td>{{ i.unit_price}}</td>
+                                <td>{{ i.son_unit}}</td>
+                                <td>{{ i.total_price}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+        </div>
+
+        <div class="rightone8">
+                <h4><span>已消耗辅助材料汇总表：</span><a href="">打印表格</a></h4>
+                <div class="spandiv">      
+                    <table>          
+                        <tr>
+                            <td>会计科目</td><td>材料品名</td>
+                            <td>日期</td><td>数量</td>
+                            <td>单价</td><td>单位</td>
+                            <td>总金额</td>
+                        </tr>
+                        {% for i in data.son.boms_dict_list %}
+                            <tr><td>{{ i.son_id}}</td>
+                                <td>{{ i.son_name}}</td>
+                                <td>{{ i.date}}</td>
+                                <td>{{ i.son_num}}</td>
+                                <td>{{ i.unit_price}}</td>
+                                <td>{{ i.son_unit}}</td>
+                                <td>{{ i.total_price}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
