@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../static/css/template3.css">
+    <script type="text/javascript" src="../../static/js/other/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../static/js/other/jquery-table2excel.js"></script>
+    <title>产成品生产费用明细查询</title>
+</head>
+<body>
+<p>
+    <select name="" id="sixfive">
+        {% for i in [data.year1,data.year2,data.year3,data.year4]%}
+        {%if i == data.query_year%}
+        <option value="{{i}}" selected="selected">{{i}}</option>
+        {% else %}
+        <option value="{{i}}">{{i}}</option>
+        {% endif%}
+        {%endfor%}
+    </select>
+    <span>年</span>
+    <select onchange="changeUrl(this)">
+        {% for i in ["01","02","03","04","05","06","07","08","09","10","11","12"] :%}
+        {% if data.query_month == i %}
+        <option value="{{i}}" selected="selected">{{i}}</option>
+        {% else %}
+        <option value="{{i}}">{{i}}</option>
+        {% endif%}
+        {%endfor%}
+    </select>
+    <span>月产成品生产费用汇总表</span>
+    <button><a id="databn">数据导出</a></button>
+</p>
+<div class="all">
+    <div class="leftone">
+        <div class="spandiv">
+            <table class="table2excel">
+                <tr>
+                    <td>序号</td><td>成品编号</td>
+                    <td>产成品名称</td><td>生产数量</td>
+                    <td>单位</td><td>原材料费用</td>
+                    <td>辅助材料费用</td><td>半成品加工费用</td>
+                    <td>单位费用</td><td>总费用</td>
+                </tr>
+                {% for i in data.boms_dict_list %}
+                <tr><td>{{ loop.index}}</td>
+                    <td>{{ i.finished_id}}</td>
+                    <td>{{ i.finished_name}}</td>
+                    <td>{{ i.num}}</td>
+                    <td>{{ i.unit}}</td>
+                    <td>{{ i.raw_cost}}</td>
+                    <td>{{ i.aux_cost}}</td>
+                    <td>{{ i.sem_cost}}</td>
+                    <td>{{ i.pro_cost}}</td>
+                    <td>{{ i.total_cost}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="downdiv">
+            <span>原材料汇总：{{ data.raw_cost}}</span>
+            <span>辅助材料汇总：{{ data.aux_cost}}</span>
+            <span>半成品加工费用汇总：{{ data.sem_cost}}</span>
+            <span>总费用：{{ data.total_cost}}</span>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        $('#databn').click(function () {
+            $(".table2excel").table2excel({
+                exclude: ".noExl",
+                name: "Excel Document Name",
+                filename: "HDF" + new Date().toISOString().replace(/[\-\:\.]/g, ""),
+                fileext: ".xls",
+                exclude_img: true,
+                exclude_links: true,
+                exclude_inputs: true
+            });
+        });
+    };
+     function changeUrl(obj) {
+        var year = document.getElementById('sixfive').value;
+        window.location.href="/sixfive?year="+year+"&month="+obj.value;
+    }
+</script>
+</body>
+</html>
