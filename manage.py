@@ -18,7 +18,7 @@ manage.add_command('db',MigrateCommand)
 # 创建管理员账户
 # 在script扩展，自定义脚本命令，以自定义函数的形式实现创建管理员用户
 # 以终端启动命令的形式实现；
-# 在终端使用命令：python manage.py create_supperuser -n admin -p 123456
+# 在终端使用命令：python manage.py create_supper_user -n admin -p 123456
 @manage.option('-n', '-name', dest='name')
 @manage.option('-p', '-password', dest='password')
 def create_supper_user(name, password):
@@ -38,5 +38,5 @@ def create_supper_user(name, password):
     print('管理员创建成功')
 
 if __name__ == '__main__':
-    print(app.url_map)
+    # print(app.url_map)
     manage.run()

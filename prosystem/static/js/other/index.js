@@ -10,9 +10,19 @@ window.onload = function(){
 
 // 管理员退出
 function logout(){
-    $.get("/logout",function(resp){
-        window.location.href = '/'
-    })
+    if(confirm('是否确认退出？')) {
+        $.get("/logout", function (resp) {
+            window.location.href = '/'
+        })
+    }
 }
 
+// 管理员退出
+function logoff(){
+    if(confirm('是否确认注销？')) {
+        $.get("/logoff", function (resp) {
+            window.location.href = '/'
+        })
+    }
+}
 
