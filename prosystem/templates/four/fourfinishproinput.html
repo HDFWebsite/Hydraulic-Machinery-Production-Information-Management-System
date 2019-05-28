@@ -28,7 +28,8 @@
                     </div>
                     <table>
                         <tr>
-                            <td>货品编号</td><td>品名</td><td>单位</td><td>货品分类</td><td>选择</td>
+                            <th>货品编号</th><th>货品名称</th><th>单位</th>
+                            <th>货品分类</th><th>选择</th>
                         </tr>
                          {% for i in data.main.boms_dict_list %}
                             <tr><td class="plan_mid">{{ i.main_id}}</td>
@@ -70,8 +71,8 @@
                     </div>
                     <table>
                         <tr>
-                            <td>编号</td><td>产品品号</td><td>产品品名</td><td>单位</td>
-                            <td>数量</td><td>录入时间</td><td>删除</td>
+                            <th>编号</th><th>产品品号</th><th>产品品名</th><th>单位</th>
+                            <th>数量</th><th>录入时间</th><th>删除</th>
                         </tr>
                         {% for i in data.son.boms_dict_list %}
                             <tr><td class="plan_iid">{{ i.id}}</td>

@@ -10,70 +10,102 @@
     <script type="text/javascript" src="../../static/js/one/onebaseinfo.js"></script>
 </head>
 <body>
-    <p>货品信息管理(产成品、原材料、自制半成品)</p>
-    <div class="table">
-        <div class="tabletop">
-            <div>
-                <button class="add_bt"><a>增加</a></button>
-                <button class="del_bt"><a>删除</a></button>
-                <span style="margin:0 5px;">|</span>
-                <button class="keep_bt"><a>保存</a></button>
-            </div>
-            <div>
-                <div style="float:right;width:240px;">
-                    <input id="query_text" style="width:140px;" placeholder="请输入货品名称"/>
-                    <button ><a id="query_name">查询</a></button>
-                </div>
-            </div>
+<p>货品信息管理(产成品、原材料、自制半成品)</p>
+<div class="tableall">
+    <div class="tabletop">
+        <div>
+            <button class="add_bt"><a>增加</a></button>
+            <button class="del_bt"><a>删除</a></button>
+            <button class="upd_bt"><a>更改</a></button>
+            <span style="margin:0 5px;">|</span>
+            <button class="cancel"><a>取消</a></button>
+            <!--<button class="keep_add_bt"><a>确定增加</a></button>-->
         </div>
-        <div class="tablelist">
-            <table>
-                <tr><th>序号</th><th><input type="checkbox" name="" id=""></th>
-                    <th>货品编号</th><th>货品名称</th><th>规格</th><th>货品类别</th>
-                    <th>单位</th><th>供应商</th></tr>
-                <tr class="hidden" id="add_list">
-                    <th>添加</th><th><input type="checkbox" id="all_checkbox"></th>
-                    <th><input type="text" name="food_num" id="food_num"></th>
-                    <th><input type="text" name="food_name" id="food_name"></th>
-                    <th><input type="text" name="food_spec" id="food_spec"></th>
-                    <th><input type="text" name="food_cate" id="food_cate"></th>
-                    <th><input style="width: 50px;" type=text" name="food_unit" id="food_unit"></th>
-                    <th><input type="text" name="food_company" id="food_company"></th>
-                </tr>
-               {% for i in data.boms_dict_list %}
-                <tr><td>{{ i.id}}</td><td><input type="checkbox" name="check_box"class="check_box" value="{{ i.main_id}}"></td><td>{{ i.main_id}}</td><td>{{ i.main_name}}</td>
-                    <td>{{ i.spec}}</td><td>{{ i.cate}}</td><td>{{ i.unit}}</td><td>{{ i.company}}</td></tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div class="tableend">
-            <div style="float:left;">
-               <select id="page_num">
-                   {% for i in (20,50,100) %}
-                   {% if  i== data.per_page %}
-                    <option selected=selected value="/onebaseinfo?per_page={{i}}&query_str={{data.query_str}}">{{i}}</option>
-                   {% else%}
-                   <option value="/onebaseinfo?per_page={{i}}&query_str={{data.query_str}}">{{i}}</option>
-                   {% endif %}
-                   {% endfor %}
-               </select>
-                <span><a href="/onebaseinfo?page=1&per_page={{data.per_page}}&query_str={{data.query_str}}">首页</a></span>
-                <span><a href="/onebaseinfo?page={{data.current_page-1}}&per_page={{data.per_page}}&query_str={{data.query_str}}">上一页</a></span>
-                {% for i in range(data.total_page) %}
-                    {% if i == data.current_page-1 %}
-                <span style="background-color:darkgreen;">
-                    <a href="/onebaseinfo?page={{ loop.index }}&per_page={{data.per_page}}&query_str={{data.query_str}}">{{ loop.index }}</a></span>
-                    {% else %}
-                    <span><a href="/onebaseinfo?page={{ loop.index }}&per_page={{data.per_page}}&query_str={{data.query_str}}">{{ loop.index }}</a></span>
-                    {% endif %}
-                {% endfor %}
-                <span><a href="/onebaseinfo?page={{data.current_page+1}}&per_page={{data.per_page}}&total_page={{data.total_page}}&query_str={{data.query_str}}">下一页</a></span>
-                <span><a href="/onebaseinfo?page={{data.total_page}}&per_page={{data.per_page}}&query_str={{data.query_str}}">尾页</a></span>
-            </div>
-            <div style="float:right;">
-                每页{{ data.per_page}}条，共{{ data.count}}条
+        <div>
+            <div style="float:right;width:240px;">
+                <input id="query_text" style="width:140px;" placeholder="请输入货品名称"/>
+                <button><a id="query_name">查询</a></button>
             </div>
         </div>
     </div>
+    <div class="tablelist">
+        <table>
+            <tr>
+                <th>序号</th>
+                <th><input type="checkbox" name="" id=""></th>
+                <th>货品编号</th>
+                <th>货品名称</th>
+                <th>规格</th>
+                <th>货品类别</th>
+                <th>单位</th>
+                <th>供应商</th>
+            </tr>
+            <tr class="hidden" id="add_list">
+                <th>添加</th>
+                <th><input type="checkbox" id="all_checkbox"></th>
+                <th><input type="text" name="food_num" id="food_num"></th>
+                <th><input type="text" name="food_name" id="food_name"></th>
+                <th><input type="text" name="food_spec" id="food_spec"></th>
+                <th><input type="text" name="food_cate" id="food_cate"></th>
+                <th><input style="width: 50px;" type=text" name="food_unit" id="food_unit"></th>
+                <th><input type="text" name="food_company" id="food_company"></th>
+            </tr>
+            <tr class="hidden" id="upd_list">
+                <th>更改</th>
+                <th><input type="checkbox" id="update_checkbox"></th>
+                <th><input type="text" disabled="disabled" name="update_num" id="update_num"></th>
+                <th><input type="text" name="update_name" id="update_name"></th>
+                <th><input type="text" name="update_spec" id="update_spec"></th>
+                <th><input type="text" name="update_cate" id="update_cate"></th>
+                <th><input style="width: 50px;" type=text" name="update_unit" id="update_unit"></th>
+                <th><input type="text" name="update_company" id="update_company"></th>
+            </tr>
+            {% for i in data.boms_dict_list %}
+            <tr>
+                <td>{{ i.id}}</td>
+                <td><input type="checkbox" name="check_box" class="check_box" value="{{ i.main_id}}"></td>
+                <td class="food_num">{{ i.main_id}}</td>
+                <td class="food_name">{{ i.main_name}}</td>
+                <td class="food_spec">{{ i.spec}}</td>
+                <td class="food_cate">{{ i.cate}}</td>
+                <td class="food_unit">{{ i.unit}}</td>
+                <td class="food_company">{{ i.company}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="tableend">
+        <div style="float:left;">
+            <select id="page_num">
+                {% for i in (20,50,100) %}
+                {% if i== data.per_page %}
+                <option selected=selected value="/onebaseinfo?per_page={{i}}&query_str={{data.query_str}}">{{i}}
+                </option>
+                {% else%}
+                <option value="/onebaseinfo?per_page={{i}}&query_str={{data.query_str}}">{{i}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <span><a href="/onebaseinfo?page=1&per_page={{data.per_page}}&query_str={{data.query_str}}">首页</a></span>
+            <span><a
+                    href="/onebaseinfo?page={{data.current_page-1}}&per_page={{data.per_page}}&query_str={{data.query_str}}">上一页</a></span>
+            {% for i in range(data.total_page) %}
+            {% if i == data.current_page-1 %}
+            <span style="background-color:darkgreen;">
+                    <a href="/onebaseinfo?page={{ loop.index }}&per_page={{data.per_page}}&query_str={{data.query_str}}">{{ loop.index }}</a></span>
+            {% else %}
+            <span><a href="/onebaseinfo?page={{ loop.index }}&per_page={{data.per_page}}&query_str={{data.query_str}}">{{ loop.index }}</a></span>
+            {% endif %}
+            {% endfor %}
+            <span><a
+                    href="/onebaseinfo?page={{data.current_page+1}}&per_page={{data.per_page}}&total_page={{data.total_page}}&query_str={{data.query_str}}">下一页</a></span>
+            <span><a
+                    href="/onebaseinfo?page={{data.total_page}}&per_page={{data.per_page}}&query_str={{data.query_str}}">尾页</a></span>
+        </div>
+        <div style="float:right;margin-right:15px;">
+            每页{{ data.per_page}}条，共{{ data.count}}条
+        </div>
+    </div>
+</div>
 </body>
 </html>

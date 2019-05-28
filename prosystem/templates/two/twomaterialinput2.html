@@ -20,8 +20,8 @@
             <div class="tabletop">选取辅助材料：</div>
             <div class="tabletop"><span>查询：</span>
                 <select name="" id="input2_msel">
-                    <option value="1">科目编号</option>
-                    <option value="2">品名</option>
+                    <option value="1">货品编号</option>
+                    <option value="2">货品名称</option>
                 </select>
                 <input type="text" style="width:180px;" id="input2_mquery_text">
                 <button type="submit" ><a id="input2_mquery_name">查询</a></button>
@@ -31,7 +31,9 @@
                     </a></button></div>
             <div class="spandiv">
                     <table>
-                            <tr><td>科目编号</td><td>品名</td><td>单位</td><td>分类名称</td><td>选择 </td></tr>
+                            <tr>
+                                <th>科目编号</th><th>品名</th><th>单位</th>
+                                <th>分类名称</th><th>选择 </th></tr>
                         {% for i in data.main.boms_dict_list %}
                             <tr><td class="input2_id">{{ i.main_id}}</td><td class="input2_name">{{ i.main_name}}</td><td class="input2_unit">{{ i.unit}}</td><td class="input2_cate">{{ i.cate}}</td><td class="input2_choice">选择</td></tr>
                         {% endfor %}
@@ -56,16 +58,16 @@
         <div class="rightone3">
             <div>
                 <div class="tabletop">辅助材料信息：</div>
-                <div class="miandivspan">
+                <div class="miandivspan1">
                     <div><span>品号：</span><input type="text" id="input2_sid"></div>
                     <div><span>&nbsp;&nbsp;品名：</span><input type="text" id="input2_sna"></div>
                     <div><span>&nbsp;&nbsp;单位：</span><input type="text" id="input2_sun"></div>
                 </div>
-                <div class="miandivspan">
+                <div class="miandivspan1">
                     <div><span>日期：</span><input type="text" id="myDate"></div>
                     <div><span>&nbsp;&nbsp;价格：</span><input type="text" placeholder='￥'id="input2_spr"></div>
                 </div>
-                <div class="miandivspan">
+                <div class="miandivspan1">
                     <button type="submit" id="input2_in">录入</button>
                     <button type="submit" id="input2_mv">取消</button>
                 </div>
@@ -82,7 +84,8 @@
             <div class="spandiv">
                     <table>
                             <tr>
-                                <td>辅助材料品号</td><td>辅助材料品名</td><td>单位</td><td>单价</td><td>录入时间</td><td>删除</td>
+                                <th>辅助材料品号</th><th>辅助材料品名</th><th>单位</th>
+                                <th>单价</th><th>录入时间</th><th>删除</th>
                             </tr>
                         {% for i in data.son.boms_dict_list %}
                             <tr><td class="input2_sid">{{ i.main_id}}</td><td>{{ i.main_name}}</td><td>{{ i.unit}}</td><td>{{ i.price}}</td><td>{{ i.date}}</td><td class="input2_del">删除</td></tr>

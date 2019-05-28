@@ -10,109 +10,157 @@
     <script type="text/javascript" src="../../static/js/two/twobaseinput3.js"></script>
     <title>半成品单位加工费录入</title>
     <style>
-  </style>
+    </style>
 </head>
 <body>
-   
-    <div class="all">
-            <p>半成品单位加工费录入</p>
-        <div class="leftone3">
-            <div class="tabletop">选取原材料：</div>
-            <div class="tabletop"><span>查询：</span>
-                <select name="" id="input3_msel">
-                    <option value="1">科目编号</option>
-                    <option value="2">品名</option>
-                </select>
-                <input type="text" style="width:180px;" id="input3_mquery_text">
-                <button type="submit" ><a id="input3_mquery_name">查询</a></button>
-                <button type="submit">
-                    <a href="/twomaterialinput3?s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.s_sel}}&s_qstr={{data.son.query_str}}" id="input3_mall">
-                        全部
-                    </a></button></div>
-            <div class="spandiv">
-                    <table>
-                            <tr><td>科目编号</td><td>品名</td><td>单位</td><td>分类名称</td><td>选择 </td></tr>
-                        {% for i in data.main.boms_dict_list %}
-                            <tr><td class="input3_id">{{ i.main_id}}</td><td class="input3_name">{{ i.main_name}}</td><td class="input3_unit">{{ i.unit}}</td><td class="input3_cate">{{ i.cate}}</td><td class="input3_choice">选择</td></tr>
-                        {% endfor %}
-                    </table>
-                    <div class="pagediv">
-                        <tr>
-                            <td>第{{data.main.current_page}}页 共{{data.main.total_page}}页</td>
-                            <td><a href="/twomaterialinput3?m_page=1&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">首页</a></td>
-                            <td><a href="/twomaterialinput3?m_page={{data.main.current_page-1}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">上一页</a></td>
-                            {% for i in range(data.main.total_page) %}
-                            <td><a href="/twomaterialinput3?m_page={{ loop.index }}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">{{ loop.index }}</a></td>
-                            {% endfor %}
-                            <td><a href="/twomaterialinput3?m_page={{data.main.current_page+1}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">下一页</a></td>
-                            <td><a href="/twomaterialinput3?m_page={{data.main.total_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">末页</a></td>
-                            <!--<td><input type="text"style="width:20px;">-->
-                                <!--<button style="width:30px;height:18px;margin:0;">GO</button>-->
-                            <!--</td> -->
-                        </tr>
-                    </div>
-            </div>
+
+<div class="all">
+    <p>半成品单位加工费录入</p>
+    <div class="leftone3">
+        <div class="tabletop">选取原材料：</div>
+        <div class="tabletop"><span>查询：</span>
+            <select name="" id="input3_msel">
+                <option value="1">货品编号</option>
+                <option value="2">货品名称</option>
+            </select>
+            <input type="text" style="width:180px;" id="input3_mquery_text">
+            <button type="submit"><a id="input3_mquery_name">查询</a></button>
+            <button type="submit">
+                <a href="/twomaterialinput3?s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.s_sel}}&s_qstr={{data.son.query_str}}"
+                   id="input3_mall">
+                    全部
+                </a></button>
         </div>
-        <div class="rightone3">
-            <div>
-                <div class="tabletop">半成品信息：</div>
-                <div class="miandivspan">  
-                    <div><span>品号：</span><input type="text" id="input3_sid"></div>
-                    <div><span>&nbsp;&nbsp;品名：</span><input type="text" id="input3_sna"></div>
-                    <div><span>&nbsp;&nbsp;单位：</span><input type="text" id="input3_sun"></div>
-                </div>
-                <div class="miandivspan">
-                    <div><span>日期：</span><input type="text" id="myDate"></div>
-                    <div><span>&nbsp;&nbsp;价格：</span><input type="text" placeholder='￥'id="input3_spr"></div>
-                </div>
-                <div class="miandivspan">
-                    <button type="submit" id="input3_in">录入</button>
-                    <button type="submit" id="input3_mv">取消</button>
-                </div>
-            </div>
-            <div class="tabletop2">
-                <select name="" id="input3_ssel">
-                    <option selected = selected value="1">半成品品号</option>
-                    <option value="2">半成品品名</option>
-                </select>
-                <input type="text" style="width:200px;" id="input3_squery_text">
-                <button type="submit"><a id="input3_squery_name">查询</a></button>
-                <button type="submit"><a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.m_sel}}&m_qstr={{data.main.query_str}}" id="input3_sall">全部</a></button>
-            </div>
-            <div class="spandiv">
-                    <table>       
-                            <tr>
-                                <td>半成品品号</td><td>半成品品名</td><td>单位</td><td>单价</td><td>录入时间</td><td>删除</td>
-                            </tr>
-                        {% for i in data.son.boms_dict_list %}
-                            <tr><td class="input3_sid">{{ i.main_id}}</td><td>{{ i.main_name}}</td><td>{{ i.unit}}</td><td>{{ i.price}}</td><td>{{ i.date}}</td><td class="input3_del">删除</td></tr>
-                        {% endfor %}
-                    </table>
-                    <div class="pagediv">
-                        <tr>
-                            <td>第{{data.son.current_page}}页 共{{data.son.total_page}}页</td>
-                            <td><a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page=1&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">首页</a></td>
-                            <td><a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page-1}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">上一页</a></td>
-                            {% for i in range(data.son.total_page) %}
-                            <td><a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{loop.index}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">{{ loop.index }}</a></td>
-                            {% endfor %}
-                            <td><a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page+1}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">下一页</a></td>
-                            <td><a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.total_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">末页</a></td>
-                            <!--<td><input type="text"style="width:20px;">-->
-                                <!--<button style="width:30px;height:18px;margin:0;">GO</button>-->
-                            <!--</td> -->
-                        </tr>
-                    </div>
+        <div class="spandiv">
+            <table>
+                <tr>
+                    <th>科目编号</th>
+                    <th>品名</th>
+                    <th>单位</th>
+                    <th>分类名称</th>
+                    <th>选择</th>
+                </tr>
+                {% for i in data.main.boms_dict_list %}
+                <tr>
+                    <td class="input3_id">{{ i.main_id}}</td>
+                    <td class="input3_name">{{ i.main_name}}</td>
+                    <td class="input3_unit">{{ i.unit}}</td>
+                    <td class="input3_cate">{{ i.cate}}</td>
+                    <td class="input3_choice">选择</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="pagediv">
+                <tr>
+                    <td>第{{data.main.current_page}}页 共{{data.main.total_page}}页</td>
+                    <td>
+                        <a href="/twomaterialinput3?m_page=1&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">首页</a>
+                    </td>
+                    <td>
+                        <a href="/twomaterialinput3?m_page={{data.main.current_page-1}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">上一页</a>
+                    </td>
+                    {% for i in range(data.main.total_page) %}
+                    <td>
+                        <a href="/twomaterialinput3?m_page={{ loop.index }}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">{{
+                            loop.index }}</a></td>
+                    {% endfor %}
+                    <td>
+                        <a href="/twomaterialinput3?m_page={{data.main.current_page+1}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">下一页</a>
+                    </td>
+                    <td>
+                        <a href="/twomaterialinput3?m_page={{data.main.total_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">末页</a>
+                    </td>
+                    <!--<td><input type="text"style="width:20px;">-->
+                    <!--<button style="width:30px;height:18px;margin:0;">GO</button>-->
+                    <!--</td> -->
+                </tr>
             </div>
         </div>
     </div>
+    <div class="rightone3">
+        <div>
+            <div class="tabletop">半成品信息：</div>
+            <div class="miandivspan1">
+                <div><span>品号：</span><input type="text" id="input3_sid"></div>
+                <div><span>&nbsp;&nbsp;品名：</span><input type="text" id="input3_sna"></div>
+                <div><span>&nbsp;&nbsp;单位：</span><input type="text" id="input3_sun"></div>
+            </div>
+            <div class="miandivspan1">
+                <div><span>日期：</span><input type="text" id="myDate"></div>
+                <div><span>&nbsp;&nbsp;价格：</span><input type="text" placeholder='￥' id="input3_spr"></div>
+            </div>
+            <div class="miandivspan1">
+                <button type="submit" id="input3_in">录入</button>
+                <button type="submit" id="input3_mv">取消</button>
+            </div>
+        </div>
+        <div class="tabletop2">
+            <select name="" id="input3_ssel">
+                <option selected=selected value="1">半成品品号</option>
+                <option value="2">半成品品名</option>
+            </select>
+            <input type="text" style="width:200px;" id="input3_squery_text">
+            <button type="submit"><a id="input3_squery_name">查询</a></button>
+            <button type="submit"><a
+                    href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.m_sel}}&m_qstr={{data.main.query_str}}"
+                    id="input3_sall">全部</a></button>
+        </div>
+        <div class="spandiv">
+            <table>
+                <tr>
+                    <th>半成品品号</th>
+                    <th>半成品品名</th>
+                    <th>单位</th>
+                    <th>单价</th>
+                    <th>录入时间</th>
+                    <th>删除</th>
+                </tr>
+                {% for i in data.son.boms_dict_list %}
+                <tr>
+                    <td class="input3_sid">{{ i.main_id}}</td>
+                    <td>{{ i.main_name}}</td>
+                    <td>{{ i.unit}}</td>
+                    <td>{{ i.price}}</td>
+                    <td>{{ i.date}}</td>
+                    <td class="input3_del">删除</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="pagediv">
+                <tr>
+                    <td>第{{data.son.current_page}}页 共{{data.son.total_page}}页</td>
+                    <td>
+                        <a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page=1&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">首页</a>
+                    </td>
+                    <td>
+                        <a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page-1}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">上一页</a>
+                    </td>
+                    {% for i in range(data.son.total_page) %}
+                    <td>
+                        <a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{loop.index}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">{{
+                            loop.index }}</a></td>
+                    {% endfor %}
+                    <td>
+                        <a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.current_page+1}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">下一页</a>
+                    </td>
+                    <td>
+                        <a href="/twomaterialinput3?m_page={{data.main.current_page}}&m_tpage={{data.main.total_page}}&m_sel={{data.main.sel}}&m_qstr={{data.main.query_str}}&s_page={{data.son.total_page}}&s_tpage={{data.son.total_page}}&s_sel={{data.son.sel}}&s_qstr={{data.son.query_str}}">末页</a>
+                    </td>
+                    <!--<td><input type="text"style="width:20px;">-->
+                    <!--<button style="width:30px;height:18px;margin:0;">GO</button>-->
+                    <!--</td> -->
+                </tr>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     var y = new Date().getFullYear();
-    var m = new Date().getMonth()+1 ;
+    var m = new Date().getMonth() + 1;
     var d = new Date().getDate();
-    m = m>9?m:"0"+m;
-    d = d>9?d:"0"+d;
-    myDate.value = y+'-'+m+'-'+d;
+    m = m > 9 ? m : "0" + m;
+    d = d > 9 ? d : "0" + d;
+    myDate.value = y + '-' + m + '-' + d;
 </script>
 </body>
 </html>

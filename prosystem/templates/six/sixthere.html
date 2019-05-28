@@ -10,65 +10,71 @@
     <title>半成品生产费用明细查询</title>
 </head>
 <body>
-        <p> 
-            <select name="" id="sixthere">
-                {% for i in [data.year1,data.year2,data.year3,data.year4]%}
-                    {%if i == data.query_year%}
-                    <option value="{{i}}" selected="selected">{{i}}</option>
-                    {% else %}
-                        <option value="{{i}}">{{i}}</option>
-                    {% endif%}
-                {%endfor%}
-            </select>
-            <span>年</span>
-            <select onchange="changeUrl(this)">
-                {% for i in ["01","02","03","04","05","06","07","08","09","10","11","12"] :%}
-                    {% if data.query_month == i %}
-                        <option value="{{i}}" selected="selected">{{i}}</option>
-                    {% else %}
-                        <option value="{{i}}">{{i}}</option>
-                    {% endif%}
-                {%endfor%}
-            </select>
-            <span>月半成品生产费用汇总表</span>
-            <button><a id="databn">数据导出</a></button>
-        </p>
-    <div class="all">
-        <div class="leftone11">
-            <div class="spandiv">    
-                    <table class="table2excel">
-                            <tr>
-                                <td>序号</td><td>半成品编号</td>
-                                <td>半成品名称</td><td>生产数量</td>
-                                <td>单位</td><td>原材料费用</td>
-                                <td>辅助材料费用</td><td>制造费用</td>
-                                <td>单位费用</td><td>总费用</td>
-                            </tr>
-                            {% for i in data.boms_dict_list %}
-                                <tr><td>{{ loop.index}}</td>
-                                    <td>{{ i.son_id}}</td>
-                                    <td>{{ i.son_name}}</td>
-                                    <td>{{ i.son_num}}</td>
-                                    <td>{{ i.son_unit}}</td>
-                                    <td>{{ i.raw_cost}}</td>
-                                    <td>{{ i.aux_cost}}</td>
-                                    <td>{{ i.all_cost}}</td>
-                                    <td>{{ i.pro_cost}}</td>
-                                    <td>{{ i.total_cost}}</td>
-                                </tr>
-                            {% endfor %}
-                    </table>
-            </div>
-            <div class="downdiv">
-                <span>原材料汇总：{{ data.raw_cost}}</span>
-                <span>辅助材料汇总：{{ data.aux_cost}}</span>
-                <span>制造费用汇总：{{ data.unit_cost}}</span>
-                <span>总费用：{{ data.total_cost}}</span>
-            </div>
+<p>
+    <select name="" id="sixthere">
+        {% for i in [data.year1,data.year2,data.year3,data.year4]%}
+        {%if i == data.query_year%}
+        <option value="{{i}}" selected="selected">{{i}}</option>
+        {% else %}
+        <option value="{{i}}">{{i}}</option>
+        {% endif%}
+        {%endfor%}
+    </select>
+    <span>年</span>
+    <select onchange="changeUrl(this)">
+        {% for i in ["01","02","03","04","05","06","07","08","09","10","11","12"] :%}
+        {% if data.query_month == i %}
+        <option value="{{i}}" selected="selected">{{i}}</option>
+        {% else %}
+        <option value="{{i}}">{{i}}</option>
+        {% endif%}
+        {%endfor%}
+    </select>
+    <span>月半成品生产费用汇总表</span>
+    <button><a id="databn">数据导出</a></button>
+</p>
+<div class="all">
+    <div class="leftone11">
+        <div class="spandiv">
+            <table class="table2excel">
+                <tr>
+                    <th>序号</th>
+                    <th>半成品编号</th>
+                    <th>半成品名称</th>
+                    <th>生产数量</th>
+                    <th>单位</th>
+                    <th>原材料费用</th>
+                    <th>辅助材料费用</th>
+                    <th>制造费用</th>
+                    <th>单位费用</th>
+                    <th>总费用</th>
+                </tr>
+                {% for i in data.boms_dict_list %}
+                <tr>
+                    <td>{{ loop.index}}</td>
+                    <td>{{ i.son_id}}</td>
+                    <td>{{ i.son_name}}</td>
+                    <td>{{ i.son_num}}</td>
+                    <td>{{ i.son_unit}}</td>
+                    <td>{{ i.raw_cost}}</td>
+                    <td>{{ i.aux_cost}}</td>
+                    <td>{{ i.all_cost}}</td>
+                    <td>{{ i.pro_cost}}</td>
+                    <td>{{ i.total_cost}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="downdiv">
+            <span>原材料汇总：{{ data.raw_cost}}</span>
+            <span>辅助材料汇总：{{ data.aux_cost}}</span>
+            <span>制造费用汇总：{{ data.unit_cost}}</span>
+            <span>总费用：{{ data.total_cost}}</span>
         </div>
     </div>
+</div>
 <script>
-    window.onload = function() {
+    window.onload = function () {
         $('#databn').click(function () {
             $(".table2excel").table2excel({
                 exclude: ".noExl",
@@ -81,9 +87,9 @@
             });
         });
     };
-     function changeUrl(obj) {
+    function changeUrl(obj) {
         var year = document.getElementById('sixthere').value;
-        window.location.href="/sixthere?year="+year+"&month="+obj.value;
+        window.location.href = "/sixthere?year=" + year + "&month=" + obj.value;
     }
 </script>
 </body>

@@ -30,9 +30,10 @@
                         <button type="submit"><a href="/onebasemanage">所有</a></button>
                     </div>
                     <table>
-                            <tr><td>序号</td>
-                                <td>类别</td><td>主件品号</td><td>主件品名</td><td>单位</td>
-                                <td>录入时间</td><td>展开图</td><td>删除</td>
+                            <tr><th>序号</th>
+                                <th>类别</th><th>主件品号</th>
+                                <th>主件品名</th><th>单位</th>
+                                <th>录入时间</th><th>展开图</th><th>删除</th>
                             </tr>
                         {% for data in data.main.boms_dict_list%}
                             <tr><td>{{loop.index}}</td>

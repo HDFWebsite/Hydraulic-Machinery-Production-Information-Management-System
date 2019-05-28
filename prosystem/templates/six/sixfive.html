@@ -38,14 +38,20 @@
         <div class="spandiv">
             <table class="table2excel">
                 <tr>
-                    <td>序号</td><td>成品编号</td>
-                    <td>产成品名称</td><td>生产数量</td>
-                    <td>单位</td><td>原材料费用</td>
-                    <td>辅助材料费用</td><td>半成品加工费用</td>
-                    <td>单位费用</td><td>总费用</td>
+                    <th>序号</th>
+                    <th>成品编号</th>
+                    <th>产成品名称</th>
+                    <th>生产数量</th>
+                    <th>单位</th>
+                    <th>原材料费用</th>
+                    <th>辅助材料费用</th>
+                    <th>半成品加工费用</th>
+                    <th>单位费用</th>
+                    <th>总费用</th>
                 </tr>
                 {% for i in data.boms_dict_list %}
-                <tr><td>{{ loop.index}}</td>
+                <tr>
+                    <td>{{ loop.index}}</td>
                     <td>{{ i.finished_id}}</td>
                     <td>{{ i.finished_name}}</td>
                     <td>{{ i.num}}</td>
@@ -68,7 +74,7 @@
     </div>
 </div>
 <script>
-    window.onload = function() {
+    window.onload = function () {
         $('#databn').click(function () {
             $(".table2excel").table2excel({
                 exclude: ".noExl",
@@ -81,9 +87,9 @@
             });
         });
     };
-     function changeUrl(obj) {
+    function changeUrl(obj) {
         var year = document.getElementById('sixfive').value;
-        window.location.href="/sixfive?year="+year+"&month="+obj.value;
+        window.location.href = "/sixfive?year=" + year + "&month=" + obj.value;
     }
 </script>
 </body>

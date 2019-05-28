@@ -10,65 +10,87 @@
     <title>半成品月生产量统计表</title>
 </head>
 <body>
-        <p> <select onchange="window.location.href='fivefive?year=' + this.value">
-                {% for i in [data.year1,data.year2,data.year3,data.year4]%}
-                    {%if i == data.query_year%}
-                    <option value="{{i}}" selected="selected">{{i}}</option>
-                    {% else %}
-                        <option value="{{i}}">{{i}}</option>
-                    {% endif%}
-                {%endfor%}
-            </select>
-            <span>{{data.query_year}}年自制半成品生产量月汇总表</span>
-            <button><a id="databn">数据导出</a></button>
-        </p>
-    <div class="all">
-        <div class="leftone11">
-            <div class="spandiv">
-                    <table class="table2excel">
-                            <tr>
-                                <td>序号</td><td>物料编号</td><td>物料名称</td>
-                                <td>类别</td><td>单位</td><td>一月</td>
-                                <td>二月</td><td>三月</td><td>四月</td>
-                                <td>五月</td><td>六月</td><td>七月</td>
-                                <td>八月</td><td>九月</td><td>十月</td>
-                                <td>十一月</td><td>十二月</td>
-                            </tr>
-                            {% for i in data.boms_dict_list %}
-                                <tr><td>{{ loop.index}}</td>
-                                    <td>{{ i.main_id}}</td>
-                                    <td>{{ i.main_name}}</td>
-                                    <td>{{ i.cate}}</td>
-                                    <td>{{ i.unit}}</td>
-                                    <td>{{ i.month01}}</td>
-                                    <td>{{ i.month02}}</td>
-                                    <td>{{ i.month03}}</td>
-                                    <td>{{ i.month04}}</td>
-                                    <td>{{ i.month05}}</td>
-                                    <td>{{ i.month06}}</td>
-                                    <td>{{ i.month07}}</td>
-                                    <td>{{ i.month08}}</td>
-                                    <td>{{ i.month09}}</td>
-                                    <td>{{ i.month10}}</td>
-                                    <td>{{ i.month11}}</td>
-                                    <td>{{ i.month12}}</td>
-                                </tr>
-                            {% endfor %}
-                            <tr>
-                                <td></td><td></td><td></td><td></td><td style="color:red;">合计：</td>
-                                <td>{{data.total_month01}}</td><td>{{data.total_month02}}</td>
-                                <td>{{data.total_month03}}</td><td>{{data.total_month04}}</td>
-                                <td>{{data.total_month05}}</td><td>{{data.total_month06}}</td>
-                                <td>{{data.total_month07}}</td><td>{{data.total_month08}}</td>
-                                <td>{{data.total_month09}}</td><td>{{data.total_month10}}</td>
-                                <td>{{data.total_month11}}</td><td>{{data.total_month12}}</td>
-                            </tr>
-                    </table>
-            </div>
+<p><select onchange="window.location.href='fivefive?year=' + this.value">
+    {% for i in [data.year1,data.year2,data.year3,data.year4]%}
+    {%if i == data.query_year%}
+    <option value="{{i}}" selected="selected">{{i}}</option>
+    {% else %}
+    <option value="{{i}}">{{i}}</option>
+    {% endif%}
+    {%endfor%}
+</select>
+    <span>{{data.query_year}}年自制半成品生产量月汇总表</span>
+    <button><a id="databn">数据导出</a></button>
+</p>
+<div class="all">
+    <div class="leftone11">
+        <div class="spandiv">
+            <table class="table2excel">
+                <tr>
+                    <th>序号</th>
+                    <th>物料编号</th>
+                    <th>物料名称</th>
+                    <th>类别</th>
+                    <th>单位</th>
+                    <th>一月</th>
+                    <th>二月</th>
+                    <th>三月</th>
+                    <th>四月</th>
+                    <th>五月</th>
+                    <th>六月</th>
+                    <th>七月</th>
+                    <th>八月</th>
+                    <th>九月</th>
+                    <th>十月</th>
+                    <th>十一月</th>
+                    <th>十二月</th>
+                </tr>
+                {% for i in data.boms_dict_list %}
+                <tr>
+                    <td>{{ loop.index}}</td>
+                    <td>{{ i.main_id}}</td>
+                    <td>{{ i.main_name}}</td>
+                    <td>{{ i.cate}}</td>
+                    <td>{{ i.unit}}</td>
+                    <td>{{ i.month01}}</td>
+                    <td>{{ i.month02}}</td>
+                    <td>{{ i.month03}}</td>
+                    <td>{{ i.month04}}</td>
+                    <td>{{ i.month05}}</td>
+                    <td>{{ i.month06}}</td>
+                    <td>{{ i.month07}}</td>
+                    <td>{{ i.month08}}</td>
+                    <td>{{ i.month09}}</td>
+                    <td>{{ i.month10}}</td>
+                    <td>{{ i.month11}}</td>
+                    <td>{{ i.month12}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="color:red;">合计：</td>
+                    <td>{{data.total_month01}}</td>
+                    <td>{{data.total_month02}}</td>
+                    <td>{{data.total_month03}}</td>
+                    <td>{{data.total_month04}}</td>
+                    <td>{{data.total_month05}}</td>
+                    <td>{{data.total_month06}}</td>
+                    <td>{{data.total_month07}}</td>
+                    <td>{{data.total_month08}}</td>
+                    <td>{{data.total_month09}}</td>
+                    <td>{{data.total_month10}}</td>
+                    <td>{{data.total_month11}}</td>
+                    <td>{{data.total_month12}}</td>
+                </tr>
+            </table>
         </div>
     </div>
+</div>
 <script>
-    window.onload = function() {
+    window.onload = function () {
         $('#databn').click(function () {
             $(".table2excel").table2excel({
                 exclude: ".noExl",

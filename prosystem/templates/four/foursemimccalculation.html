@@ -9,60 +9,81 @@
     <script type="text/javascript" src="../../static/js/four/fourfinishconsume.js"></script>
     <title> 半成品消耗量计算</title>
     <style>
-        html,body{
+        html, body {
             width: 120%;
-            height:100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="pspan120">
+<div class="pspan120">
     <p>
         <span><button id="RScal">半成品BOM计算</button>
         </span><span>{{data.year}}-{{data.month}}月</span>
     </p>
-    </div>
-    <div class="all">
-        <div class="leftone9">
-            <span>本月已生产的半成品：</span>
-            <div class="spandiv">    
-                    <table>  
-                            <tr>
-                                <td>产品品号</td><td>产品品名</td><td>单位</td><td>数量</td><td>录入时间</td><td>是否计算</td>
-                            </tr>
-                            {% for i in data.main.boms_dict_list %}
-                            <tr><td>{{ i.son_id}}</td>
-                                <td>{{ i.son_name}}</td>
-                                <td>{{ i.son_unit}}</td>
-                                <td>{{ i.son_num}}</td>
-                                <td>{{ i.date}}</td>
-                                <td>{{ i.is_cal}}</td></tr>
-                            {% endfor %}
-                    </table>
-            </div>
+</div>
+<div class="all">
+    <div class="leftone9">
+        <span>本月已生产的半成品：</span>
+        <div class="spandiv">
+            <table>
+                <tr>
+                    <th>产品品号</th>
+                    <th>产品品名</th>
+                    <th>单位</th>
+                    <th>数量</th>
+                    <th>录入时间</th>
+                    <th>是否计算</th>
+                </tr>
+                {% for i in data.main.boms_dict_list %}
+                <tr>
+                    <td>{{ i.son_id}}</td>
+                    <td>{{ i.son_name}}</td>
+                    <td>{{ i.son_unit}}</td>
+                    <td>{{ i.son_num}}</td>
+                    <td>{{ i.date}}</td>
+                    <td>{{ i.is_cal}}</td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
-
-        <div class="rightone9">
-                <span>半成品BOM计算结果：</span>
-                <div class="spandiv">      
-                        <table>                     
-                                <tr>
-                                    <td>半成品品号</td><td>半成品品名</td><td>录入日期</td>
-                                    <td>单位</td><td>数量</td><td>子件品号</td><td>子件品名</td>
-                                    <td>单位</td><td>子件数量</td><td>子件单价</td><td>总费用</td>
-                                </tr>
-                                {% for i in data.son.boms_dict_list %}
-                                <tr><td>{{ i.semi_id}}</td><td>{{ i.semi_name}}</td>
-                                    <td>{{ i.date}}</td><td>{{ i.unit}}</td>
-                                    <td>{{ i.num}}</td><td>{{ i.son_id}}</td>
-                                    <td>{{ i.son_name}}</td><td>{{ i.son_unit}}</td>
-                                    <td>{{ i.son_num}}</td><td>{{ i.unit_price}}</td>
-                                    <td>{{ i.total_price}}</td>
-                                </tr>
-                                {% endfor %}
-                            </table>
-                </div>
-            </div>
     </div>
+
+    <div class="rightone9">
+        <span>半成品BOM计算结果：</span>
+        <div class="spandiv">
+            <table>
+                <tr>
+                    <th>半成品品号</th>
+                    <th>半成品品名</th>
+                    <th>录入日期</th>
+                    <th>单位</th>
+                    <th>数量</th>
+                    <th>子件品号</th>
+                    <th>子件品名</th>
+                    <th>单位</th>
+                    <th>子件数量</th>
+                    <th>子件单价</th>
+                    <th>总费用</th>
+                </tr>
+                {% for i in data.son.boms_dict_list %}
+                <tr>
+                    <td>{{ i.semi_id}}</td>
+                    <td>{{ i.semi_name}}</td>
+                    <td>{{ i.date}}</td>
+                    <td>{{ i.unit}}</td>
+                    <td>{{ i.num}}</td>
+                    <td>{{ i.son_id}}</td>
+                    <td>{{ i.son_name}}</td>
+                    <td>{{ i.son_unit}}</td>
+                    <td>{{ i.son_num}}</td>
+                    <td>{{ i.unit_price}}</td>
+                    <td>{{ i.total_price}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

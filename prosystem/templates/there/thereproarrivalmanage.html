@@ -12,33 +12,43 @@
     </style>
 </head>
 <body>
-        <p><span>采购到货管理</span><span>{{data.year}}-{{data.month}}月</span></p>
-    <div class="all">
-        <div class="leftone5">
-            <span>采购订单：</span>
-            <div class="spandiv">    
-                    <table>
-                            <thead><tr>
-                                <td>序号</td><td>订单号</td><td>供应商</td><td>订单日期</td><td>是否下单</td><td>下单日期</td><td>是否到货</td><td>到货日期</td><td>到货管理</td>
-                            </tr></thead>
-                            <tbody>
-                                {% for i in data.boms_dict_list %}
-                                <tr>
-                                <td>{{ loop.index}}</td>
-                                <td class="getid">{{ i.id}}</td>
-                                <td>{{ i.company}}</td>
-                                <td>{{ i.build_time}}</td>
-                                <td>{{ i.is_order}}</td>
-                                <td>{{ i.order_time}}</td>
-                                <td>{{ i.is_get}}</td>
-                                <td>{{ i.get_time}}</td>
-                                <td class="getgoods">到货</td>
-                                </tr>
-                                 {% endfor%}
-                            </tbody>
-                    </table>
-            </div>
+<p><span>采购到货管理</span><span>{{data.year}}-{{data.month}}月</span></p>
+<div class="all">
+    <div class="leftone5">
+        <span>采购订单：</span>
+        <div class="spandiv">
+            <table>
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>订单号</th>
+                    <th>供应商</th>
+                    <th>订单日期</th>
+                    <th>是否下单</th>
+                    <th>下单日期</th>
+                    <th>是否到货</th>
+                    <th>到货日期</th>
+                    <th>到货管理</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in data.boms_dict_list %}
+                <tr>
+                    <td>{{ loop.index}}</td>
+                    <td class="getid">{{ i.id}}</td>
+                    <td>{{ i.company}}</td>
+                    <td>{{ i.build_time}}</td>
+                    <td>{{ i.is_order}}</td>
+                    <td>{{ i.order_time}}</td>
+                    <td>{{ i.is_get}}</td>
+                    <td>{{ i.get_time}}</td>
+                    <td class="getgoods">到货</td>
+                </tr>
+                {% endfor%}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 </body>
 </html>

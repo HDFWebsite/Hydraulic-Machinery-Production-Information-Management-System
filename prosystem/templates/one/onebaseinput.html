@@ -10,140 +10,182 @@
     <script type="text/javascript" src="../../static/js/one/onebaseinput.js"></script>
     <title>BOM资料录入</title>
     <style>
-        html,body{
+        html, body {
             width: 106%;
-            height:100%;
+            height: 100%;
+        }
+        .pagediv ul{
+            text-align:center;
+        }
+        .pagediv ul li{
+            margin: 0 2px;
+            display:inline-block;
         }
     </style>
 </head>
 <body>
-        <p>产品结构(BOM)资料录入</p>
-    <div class="all">
-        <div class="lefttwo1">
-            <div class="tabletop">选取主件：</div>
-            <div class="spandiv">
-                    <div>
-                        <select name="" id="main_sel">
-                            <option selected=selected value="1">货品编号</option>
-                            <option value="2">货品名称</option>
-                        </select>
-                        <input type="text" id="main_query_text">
-                        <button type="submit"><a id="main_query_name">查询</a></button>
-                    </div>
-                    <table>
-                        <thead>
-                        <tr><td>货品编号</td><td>货品名称</td><td>单位</td><td>分类名称</td><td>选择</td></tr>
-                        </thead>
-                        <tbody id="bommain">
-                        {% for i in data.main.boms_dict_list %}
-                            <tr><td class="mid">{{ i.main_id}}</td><td class="mna">{{ i.main_name}}</td><td class="mun">{{ i.unit}}</td><td class="mca">{{ i.cate}}</td><td class="main_choice">选择</td></tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    <div class="pagediv">
-                        <tr id="mainbom">
-                            <td>第<span id="maincurr">{{data.main.current_page}}</span>页
-                                共<span id="maintota">{{data.main.total_page}}</span>页</td>
-                            <td><a class="mainpage">首页</a></td>
-                            <td><a class="mainpage">上一页</a></td>
-                            {% for i in range(data.main.total_page) %}
-                            <td><a class="mainpage">{{ loop.index }}</a></td>
-                            {% endfor %}
-                            <td><a class="mainpage">下一页</a></td>
-                            <td><a class="mainpage">末页</a></td>
-                        </tr>
-                    </div>
+<p>产品结构(BOM)资料录入</p>
+<div class="all">
+    <div class="lefttwo1">
+        <div class="tabletop">选取主件：</div>
+        <div class="spandiv">
+            <div>
+                <select name="" id="main_sel">
+                    <option selected=selected value="1">货品编号</option>
+                    <option value="2">货品名称</option>
+                </select>
+                <input type="text" id="main_query_text">
+                <button type="submit"><a id="main_query_name">查询</a></button>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>货品编号</th>
+                    <th>货品名称</th>
+                    <th>单位</th>
+                    <th>分类名称</th>
+                    <th>选择</th>
+                </tr>
+                </thead>
+                <tbody id="bommain">
+                {% for i in data.main.boms_dict_list %}
+                <tr>
+                    <td class="mid">{{ i.main_id}}</td>
+                    <td class="mna">{{ i.main_name}}</td>
+                    <td class="mun">{{ i.unit}}</td>
+                    <td class="mca">{{ i.cate}}</td>
+                    <td class="main_choice">选择</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagediv">
+                <ul id="mainbom">
 
+                    <li>第<span id="maincurr">{{data.main.current_page}}</span>页</li>
+                    <li>共<span id="maintota">{{data.main.total_page}}</span>页</li>
+                    <li><a class="mainpage">首页</a></li>
+                    <li><a class="mainpage">上一页</a></li>
+                    {% for i in range(data.main.total_page) %}
+                    <li><a class="mainpage">{{ loop.index }}</a></li>
+                    {% endfor %}
+                    <li><a class="mainpage">下一页</a></li>
+                    <li><a class="mainpage">末页</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="lefttwo1">
+        <div class="tabletop">选取子件：</div>
+        <div class="spandiv">
+            <div>
+                <select name="" id="son_sel">
+                    <option selected=selected value="1">货品编号</option>
+                    <option value="2">货品名称</option>
+                </select>
+                <input type="text" id="son_query_text">
+                <button type="submit"><a id="son_query_name">查询</a></button>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>货品编号</th>
+                    <th>货品名称</th>
+                    <th>单位</th>
+                    <th>分类名称</th>
+                    <th>选择</th>
+                </tr>
+                </thead>
+                <tbody id="bomson">
+                {% for i in data.son.boms_dict_list %}
+                <tr>
+                    <td class="sid">{{ i.main_id}}</td>
+                    <td class="sna">{{ i.main_name}}</td>
+                    <td class="sun">{{ i.unit}}</td>
+                    <td class="sca">{{ i.cate}}</td>
+                    <td class="son_choice">选择</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagediv">
+                <ul id="sonbom">
+                    <li>第<span id="soncurr">{{data.son.current_page}}</span>页</li>
+                    <li>共<span id="sontota">{{data.son.total_page}}</span>页</li>
+                    <li><a class="sonpage">首页</a></li>
+                    <li><a class="sonpage">上一页</a></li>
+                    {% for i in range(data.son.total_page) %}
+                    <li><a class="sonpage">{{ loop.index }}</a></li>
+                    {% endfor %}
+                    <li><a class="sonpage">下一页</a></li>
+                    <li><a class="sonpage">末页</a></li>
+                </ul>
             </div>
         </div>
-        <div class="lefttwo1">
-            <div class="tabletop">选取子件：</div>
+    </div>
+    <div class="rightone1">
+        <div class="tabletop">添加子件：</div>
+        <div>
+            <p class="centerdiv">主件信息:</p>
+            <div class="miandivspan">
+                <div><span>主件品号：</span><input type="text" id="mid"></div>
+                <div><span>&nbsp;&nbsp;品&nbsp;&nbsp;名：</span><input type="text" id="mna"></div>
+            </div>
+            <div class="miandivspan">
+                <div><span>&nbsp;单&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;：</span>&nbsp;<input type="text" id="mun"></div>
+                <div><span>&nbsp;&nbsp;日&nbsp;&nbsp;期：</span><input type="text" id="myDate"></div>
+            </div>
+        </div>
+        <div>
+            <p class="centerdiv">子件信息:</p>
+            <div class="miandivspan">
+                <div><span>子件品号：</span><input type="text" id="sid"></div>
+                <div><span>&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;名：</span><input type="text" id="sna"></div>
+            </div>
+            <div class="miandivspan">
+                <div><span>&nbsp;单&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;：</span>&nbsp;<input type="text" id="sun"></div>
+                <div><span>&nbsp;&nbsp;类&nbsp;&nbsp;&nbsp;型：</span><input type="text" id="cate"></div>
+            </div>
+            <div class="miandivspan">
+                <div><span>&nbsp;组&nbsp;成&nbsp;量：&nbsp;</span><input type="text" id="num"></div>
+            </div>
+            <div class="centerdiv">
+                <button type="submit" id="subadd">添加子件</button>
+            </div>
+        </div>
+        <div>
             <div class="spandiv">
-                    <div>
-                        <select name="" id="son_sel">
-                            <option selected=selected value="1">货品编号</option>
-                            <option value="2">货品名称</option>
-                        </select>
-                        <input type="text" id="son_query_text">
-                        <button type="submit"><a id="son_query_name">查询</a></button>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr><td>货品编号</td><td>货品名称</td><td>单位</td><td>分类名称</td><td>选择</td></tr>
-                        </thead>
-                        <tbody id="bomson">
-                            {% for i in data.son.boms_dict_list %}
-                            <tr><td class="sid">{{ i.main_id}}</td><td class="sna">{{ i.main_name}}</td><td class="sun">{{ i.unit}}</td><td class="sca">{{ i.cate}}</td><td class="son_choice">选择</td></tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    <div class="pagediv">
-                        <tr id="sonbom">
-                            <td>第<span id="soncurr">{{data.son.current_page}}</span>页
-                                共<span id="sontota">{{data.son.total_page}}</span>页</td>
-                            <td><a class="sonpage">首页</a></td>
-                            <td><a class="sonpage">上一页</a></td>
-                            {% for i in range(data.son.total_page) %}
-                            <td><a class="sonpage">{{ loop.index }}</a></td>
-                            {% endfor %}
-                            <td><a class="sonpage">下一页</a></td>
-                            <td><a class="sonpage">末页</a></td>
-                        </tr>
-                    </div>
-            </div>
-        </div>
-        <div class="rightone1">
-            <div class="tabletop">添加子件：</div>
-            <div>
-                <p class="centerdiv">主件信息:</p>
-                <div class="miandivspan">
-                    <div><span>主件品号：</span><input type="text" id="mid"></div>
-                    <div><span>&nbsp;&nbsp;品&nbsp;&nbsp;名：</span><input type="text" id="mna"></div>
-                </div>
-                <div class="miandivspan">
-                    <div><span>&nbsp;单&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;：</span>&nbsp;<input type="text" id="mun"></div>
-                    <div><span>&nbsp;&nbsp;日&nbsp;&nbsp;期：</span><input type="text" id= "myDate"></div>
-                </div>
-            </div>
-            <div>
-                <p class="centerdiv">子件信息:</p>
-                <div class="miandivspan">
-                    <div><span>子件品号：</span><input type="text" id="sid"></div>
-                    <div><span>&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;名：</span><input type="text" id="sna"></div>
-                </div>
-                <div class="miandivspan">
-                    <div><span>&nbsp;单&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;：</span>&nbsp;<input type="text"id="sun"></div>
-                    <div><span>&nbsp;类&nbsp;&nbsp;&nbsp;型&nbsp;：</span><input type="text" id="cate"></div>
-                </div>
-                <div class="miandivspan">
-                    <div><span>&nbsp;组&nbsp;成&nbsp;量：&nbsp;</span><input type="text" id="num"></div>
-                </div>
-                <div class="centerdiv"><button type="submit" id="subadd">添加子件</button></div>
-            </div>
-            <div>
-                <div class="spandiv">   
-                    <table id="table1">
-                        <thead>
-                        <tr><td width="30px"><input id="allCkb" type="checkbox"/></td><td>子件品号</td><td>子件品名</td><td>单位</td><td>类型</td><td>组成量</td></tr>
-                        </thead>
-                        <tbody id="bom_relation"></tbody>
-                    </table>
-                    <div>
-                        <button type="submit" onclick="storeRel()">保存</button>
-                        <button type="submit" onclick="delTr2()">删除</button>
-                        <button type="submit"><a href="/onebaseinput">取消</a></button>
-                    </div>
+                <table id="table1">
+                    <thead>
+                    <tr>
+                        <th width="30px"><input id="allCkb" type="checkbox"/></th>
+                        <th>子件品号</th>
+                        <th>子件品名</th>
+                        <th>单位</th>
+                        <th>类型</th>
+                        <th>组成量</th>
+                    </tr>
+                    </thead>
+                    <tbody id="bom_relation" class="bom_relation">
+                    </tbody>
+                </table>
+                <div>
+                    <button type="submit" onclick="storeRel()">保存</button>
+                    <button type="submit" onclick="delTr2()">删除</button>
+                    <button type="submit"><a href="/onebaseinput">取消</a></button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <script>
     var y = new Date().getFullYear();
-    var m = new Date().getMonth()+1 ;
+    var m = new Date().getMonth() + 1;
     var d = new Date().getDate();
-    m = m>9?m:"0"+m;
-    d = d>9?d:"0"+d;
-    myDate.value = y+'-'+m+'-'+d;
+    m = m > 9 ? m : "0" + m;
+    d = d > 9 ? d : "0" + d;
+    myDate.value = y + '-' + m + '-' + d;
 </script>
 </body>
 </html>
