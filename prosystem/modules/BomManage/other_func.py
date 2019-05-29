@@ -29,12 +29,7 @@ def get_paginate(main_sel,query_str,page,strtype):
     else:
         if int(main_sel) == 1:
             try:
-                query_str = int(query_str)
-            except Exception as e:
-                current_app.logger.error(e)
-                return ""
-            try:
-                paginate = BomMain.query.filter(and_(or_(and_(BomMain.price>0,BomMain.cate == '自制半成品'),BomMain.cate ==strtype,),BomMain.is_bom=="N",BomMain.main_id ==query_str)).order_by(
+                paginate = BomMain.query.filter(and_(or_(and_(BomMain.price>0,BomMain.cate == '自制半成品'),BomMain.cate ==strtype,),BomMain.is_bom=="N",BomMain.main_id.like('%'+query_str+'%'))).order_by(
                     BomMain.id.asc()).paginate(page, 20, False)
             except Exception as e:
                 current_app.logger.error(e)
@@ -43,12 +38,7 @@ def get_paginate(main_sel,query_str,page,strtype):
         else:
             if int(main_sel) == 2:
                 try:
-                    query_str = str(query_str)
-                except Exception as e:
-                    current_app.logger.error(e)
-                    return jsonify(errno=RET.PARAMERR, errmsg='参数格式错误')
-                try:
-                    paginate = BomMain.query.filter(and_(or_(and_(BomMain.price>0,BomMain.cate == '自制半成品'),BomMain.cate ==strtype,),BomMain.is_bom=="N",BomMain.main_name ==query_str)).order_by(
+                    paginate = BomMain.query.filter(and_(or_(and_(BomMain.price>0,BomMain.cate == '自制半成品'),BomMain.cate ==strtype,),BomMain.is_bom=="N",BomMain.main_name.like('%'+query_str+'%'))).order_by(
                         BomMain.id.asc()).paginate(page, 20, False)
                 except Exception as e:
                     current_app.logger.error(e)
@@ -68,12 +58,7 @@ def get_paginate2(main_sel,query_str,page):
     else:
         if int(main_sel) == 1:
             try:
-                query_str = int(query_str)
-            except Exception as e:
-                current_app.logger.error(e)
-                return ""
-            try:
-                paginate = BomMain.query.filter(BomMain.cate != '产成品',BomMain.price>0,BomMain.main_id ==query_str).order_by(
+                paginate = BomMain.query.filter(BomMain.cate != '产成品',BomMain.price>0,BomMain.main_id.like('%'+query_str+'%')).order_by(
                     BomMain.id.asc()).paginate(page, 20, False)
             except Exception as e:
                 current_app.logger.error(e)
@@ -87,7 +72,7 @@ def get_paginate2(main_sel,query_str,page):
                     current_app.logger.error(e)
                     return jsonify(errno=RET.PARAMERR, errmsg='参数格式错误')
                 try:
-                    paginate = BomMain.query.filter(BomMain.cate != '产成品',BomMain.price>0,BomMain.main_name ==query_str).order_by(
+                    paginate = BomMain.query.filter(BomMain.cate != '产成品',BomMain.price>0,BomMain.main_name.like('%'+query_str+'%')).order_by(
                         BomMain.id.asc()).paginate(page, 20, False)
                 except Exception as e:
                     current_app.logger.error(e)

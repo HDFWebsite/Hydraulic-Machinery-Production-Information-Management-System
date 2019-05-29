@@ -22,6 +22,15 @@ def onebaseinfoadd():
     # 返回数据
     return data
 
+
+@boms_blue.route('/onebaseinfoupd', methods=["POST"])
+@login_required
+def onebaseinfoupd():
+
+    data = info_func.updbommain(request)
+    # 返回数据
+    return data
+
 @boms_blue.route('/onebaseinfodel')
 @login_required
 def onebaseinfodel():
@@ -33,6 +42,7 @@ def onebaseinfodel():
 @boms_blue.route('/onebaseinput')
 @login_required
 def onebaseinput():
+
     data = input_func.getbommain(request)
     # 返回数据
     return data
@@ -40,8 +50,8 @@ def onebaseinput():
 @boms_blue.route('/onebaseinputquery', methods=["POST"])
 @login_required
 def onebaseinputquery():
+
     data = input_func.getbommainquery(request)
-    print(data.data)
     # 返回数据
     return data
 
@@ -52,15 +62,18 @@ def onebaseinputadd():
     data = input_func.addbommain(request)
     # 返回数据
     return data
+
 @boms_blue.route('/onebasemanage')
 @login_required
 def onebasemanage():
+
     data = manage_func.getbommain(request)
     return data
 
 @boms_blue.route('/onebasemanagedel')
 @login_required
 def onebasemanagedel():
+
     main_id = request.args.get('main_id', "")
     data = manage_func.delete_bom_rel(main_id)
     return data

@@ -65,20 +65,16 @@ def get_main_list(my_sel,my_qstr):
             return ""
         return boms_list
     if int(my_sel) == 1:
+
         try:
-            query_str = int(my_qstr)
-        except Exception as e:
-            current_app.logger.error(e)
-            return ""
-        try:
-            boms_list = BomMain.query.filter(and_(and_(or_(BomMain.cate == '产成品', BomMain.cate == '自制半成品'), BomMain.is_bom == 'Y')),BomMain.main_id == query_str).order_by(BomMain.id.asc())
+            boms_list = BomMain.query.filter(and_(and_(or_(BomMain.cate == '产成品', BomMain.cate == '自制半成品'), BomMain.is_bom == 'Y')),BomMain.main_id.like('%'+my_qstr+'%')).order_by(BomMain.id.asc())
         except Exception as e:
             current_app.logger.error(e)
             return ""
         return boms_list
     if int(my_sel) == 2:
         try:
-            boms_list = BomMain.query.filter(and_(and_(or_(BomMain.cate == '产成品', BomMain.cate == '自制半成品'), BomMain.is_bom == 'Y')),BomMain.main_name == my_qstr).order_by(BomMain.id.asc())
+            boms_list = BomMain.query.filter(and_(and_(or_(BomMain.cate == '产成品', BomMain.cate == '自制半成品'), BomMain.is_bom == 'Y')),BomMain.main_name.like('%'+my_qstr+'%')).order_by(BomMain.id.asc())
         except Exception as e:
             current_app.logger.error(e)
             return ""

@@ -6,6 +6,7 @@ from flask import g, render_template, request, session
 from flask import redirect, url_for, jsonify, current_app, abort
 
 def getbommain(request):
+
     page = request.args.get('page', 1)
     per_page = request.args.get('per_page', 20)
     total_page = request.args.get('total_page', 0)
@@ -28,12 +29,13 @@ def getbommain(request):
             return jsonify(errno=RET.DBERR, errmsg='查询新闻数据失败')
     else:
         try:
-            count = BomMain.query.filter_by(main_name=query_str).count()
+            print(query_str)
+            count = BomMain.query.filter(BomMain.main_name.like('%'+query_str+'%')).count()
         except Exception as e:
             current_app.logger.error(e)
             return render_template('other/errorHtml.html')
         try:
-            paginate = BomMain.query.filter_by(main_name=query_str).order_by(BomMain.id.asc()).paginate(page, per_page, False)
+            paginate = BomMain.query.filter(BomMain.main_name.like('%'+query_str+'%')).order_by(BomMain.id.asc()).paginate(page, per_page, False)
         except Exception as e:
             current_app.logger.error(e)
             return jsonify(errno=RET.DBERR, errmsg='查询新闻数据失败')
@@ -75,6 +77,30 @@ def addbommain(request):
         # 数据保存错误
         return jsonify(errno=RET.DATAERR, errmsg="数据保存错误")
     return jsonify(errno=RET.OK, errmsg="数据保存成功！！！")
+
+def updbommain(request):
+    food_num = request.json.get('food_num')
+    food_name = request.json.get('food_name')
+    food_spec = request.json.get('food_spec')
+    food_cate = request.json.get('food_cate')
+    food_unit = request.json.get('food_unit')
+    food_company = request.json.get('food_company')
+
+    try:
+        bom_demo = BomMain.query.filter_by(main_id = int(food_num)).first()
+        bom_demo.main_name = food_name
+        bom_demo.spec = food_spec
+        bom_demo.cate = food_cate
+        bom_demo.unit = food_unit
+        bom_demo.company = food_company
+        db.session.commit()
+
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(e)
+        # 数据保存错误
+        return jsonify(errno=RET.DATAERR, errmsg="数据保存错误")
+    return jsonify(errno=RET.OK, errmsg="数据更改成功！！！")
 
 def delbommain(request):
     main_id = request.args.get("main_id")

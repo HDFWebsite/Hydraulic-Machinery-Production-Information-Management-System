@@ -47,17 +47,20 @@ def getbommain(request):
 def getbommainquery(request):
 
     main_page = request.json.get('m_page', '1')
+    total_page = request.json.get('total_page', '1')
     query_key = request.json.get('query_key', "")
     query_sel = request.json.get('query_sel', "")
     query_text = request.json.get('query_text', "")
+
+    main_page = other_func.compare_size(main_page, total_page)
     if query_key == "":
         return jsonify(errno=RET.DBERR, errmsg='query_key不能为空!')
     # 转换参数的数据类型
-    main_page = int(main_page)
+    page = int(main_page)
     if query_key == "产成品":
-        paginate1 =other_func.get_paginate(query_sel,query_text,main_page,query_key)
+        paginate1 =other_func.get_paginate(query_sel,query_text,page,query_key)
     else:
-        paginate1 = other_func.get_paginate2(query_sel, query_text, main_page)
+        paginate1 = other_func.get_paginate2(query_sel, query_text,page)
     # 获取分页后的数据
     boms_list, total_page, current_page = other_func.get_page(paginate1)
     # 定义容器，存储查询到的新闻数据
@@ -68,6 +71,7 @@ def getbommainquery(request):
             "total_page":total_page,
             "current_page":current_page
         }
+
     # 返回数据
     return jsonify(errno=RET.OK, data=data)
 

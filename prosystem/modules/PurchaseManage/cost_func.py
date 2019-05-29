@@ -81,4 +81,4 @@ def getFinishCost(request):
         current_app.logger.error(e)
         return jsonify(errno=RET.DATAERR, errmsg="数据查询失败！")
     data = other_func.get_boms_list(boms_list,year)
-    return render_template('five/fivethere.html',data=data)
+    return render_template('five/fivefour.html',data=data)

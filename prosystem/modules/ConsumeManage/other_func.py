@@ -28,12 +28,7 @@ def  get_paginate1(main_sel,query_str,page,strtype):
 
     if int(main_sel) == 1:
         try:
-            query_str = int(query_str)
-        except Exception as e:
-            current_app.logger.error(e)
-            return ""
-        try:
-            paginate = BomMain.query.filter(and_(and_(BomMain.cate ==strtype, BomMain.price <= 0), BomMain.main_id ==query_str)).order_by(
+            paginate = BomMain.query.filter(and_(and_(BomMain.cate ==strtype, BomMain.price <= 0), BomMain.main_id.like('%'+query_str+'%'))).order_by(
                 BomMain.id.asc()).paginate(page, 20, False)
         except Exception as e:
             current_app.logger.error(e)
@@ -41,13 +36,9 @@ def  get_paginate1(main_sel,query_str,page,strtype):
         return paginate
 
     if int(main_sel) == 2:
+
         try:
-            query_str = str(query_str)
-        except Exception as e:
-            current_app.logger.error(e)
-            return jsonify(errno=RET.PARAMERR, errmsg='参数格式错误')
-        try:
-            paginate = BomMain.query.filter(and_(and_(BomMain.cate ==strtype, BomMain.price <= 0), BomMain.main_name ==query_str)).order_by(
+            paginate = BomMain.query.filter(and_(and_(BomMain.cate ==strtype, BomMain.price <= 0), BomMain.main_name.like('%'+query_str+'%'))).order_by(
                 BomMain.id.asc()).paginate(page, 20, False)
         except Exception as e:
             current_app.logger.error(e)
@@ -58,35 +49,27 @@ def get_paginate2(main_sel,query_str,page,strtype):
     if main_sel == "" :
         try:
             paginate = BomMain.query.filter(and_(BomMain.cate ==strtype, BomMain.price > 0)).order_by(
-                BomMain.id.asc()).paginate(page, 20, False)
+                BomMain.id.asc()).paginate(page, 15, False)
         except Exception as e:
             current_app.logger.error(e)
             return jsonify(errno=RET.DBERR, errmsg='查询新闻数据失败')
         return paginate
 
     if int(main_sel) == 1:
+
         try:
-            query_str = int(query_str)
-        except Exception as e:
-            current_app.logger.error(e)
-            return ""
-        try:
-            paginate = BomMain.query.filter(and_(and_(BomMain.cate ==strtype, BomMain.price > 0), BomMain.main_id ==query_str)).order_by(
-                BomMain.id.asc()).paginate(page, 20, False)
+            paginate = BomMain.query.filter(and_(and_(BomMain.cate ==strtype, BomMain.price > 0), BomMain.main_id.like('%'+query_str+'%'))).order_by(
+                BomMain.id.asc()).paginate(page, 15, False)
         except Exception as e:
             current_app.logger.error(e)
             return jsonify(errno=RET.DBERR, errmsg='查询新闻数据失败')
         return paginate
 
     if int(main_sel) == 2:
+
         try:
-            query_str = str(query_str)
-        except Exception as e:
-            current_app.logger.error(e)
-            return jsonify(errno=RET.PARAMERR, errmsg='参数格式错误')
-        try:
-            paginate = BomMain.query.filter(and_(and_(BomMain.cate ==strtype, BomMain.price > 0), BomMain.main_name ==query_str)).order_by(
-                BomMain.id.asc()).paginate(page, 20, False)
+            paginate = BomMain.query.filter(and_(and_(BomMain.cate ==strtype, BomMain.price > 0), BomMain.main_name.like('%'+query_str+'%'))).order_by(
+                BomMain.id.asc()).paginate(page, 15, False)
         except Exception as e:
             current_app.logger.error(e)
             return jsonify(errno=RET.DBERR, errmsg='查询新闻数据失败')

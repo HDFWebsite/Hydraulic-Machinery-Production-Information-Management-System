@@ -49,13 +49,9 @@ def getplanlist(main_sel,query_str):
         return boms_dict_list1
 
     if int(main_sel) == 1:
+
         try:
-            query_str = int(query_str)
-        except Exception as e:
-            current_app.logger.error(e)
-            return ""
-        try:
-            boms_list1 = BomMain.query.filter(BomMain.main_id==query_str, BomMain.cate == '产成品', BomMain.is_bom == "Y").order_by(
+            boms_list1 = BomMain.query.filter(BomMain.main_id.like('%'+query_str+'%'), BomMain.cate == '产成品', BomMain.is_bom == "Y").order_by(
                 BomMain.id.asc()).all()
         except Exception as e:
             current_app.logger.error(e)
@@ -85,13 +81,9 @@ def getplanlist(main_sel,query_str):
         return boms_dict_list1
 
     if int(main_sel) == 2:
+
         try:
-            query_str = str(query_str)
-        except Exception as e:
-            current_app.logger.error(e)
-            return ""
-        try:
-            boms_list1 = BomMain.query.filter(BomMain.main_name==query_str, BomMain.cate == '产成品', BomMain.is_bom == "Y").order_by(
+            boms_list1 = BomMain.query.filter(BomMain.main_name.like('%'+query_str+'%'), BomMain.cate == '产成品', BomMain.is_bom == "Y").order_by(
                 BomMain.id.asc()).all()
         except Exception as e:
             current_app.logger.error(e)
@@ -130,26 +122,18 @@ def get_planpaginate(main_sel,query_str):
             return ""
         return boms_list
     if int(main_sel) == 1:
+
         try:
-            query_str = int(query_str)
-        except Exception as e:
-            current_app.logger.error(e)
-            return ""
-        try:
-            boms_list = FinishedProduct.query.filter(FinishedProduct.plan_id==query_str,FinishedProduct.is_cal==False).order_by(FinishedProduct.id.asc())
+            boms_list = FinishedProduct.query.filter(FinishedProduct.plan_id.like('%'+query_str+'%'),FinishedProduct.is_cal==False).order_by(FinishedProduct.id.asc())
         except Exception as e:
             current_app.logger.error(e)
             return ""
         return boms_list
 
     if int(main_sel) == 2:
+
         try:
-            query_str = str(query_str)
-        except Exception as e:
-            current_app.logger.error(e)
-            return ""
-        try:
-            boms_list = FinishedProduct.query.filter(FinishedProduct.plan_name==query_str,FinishedProduct.is_cal==False).order_by(FinishedProduct.id.asc())
+            boms_list = FinishedProduct.query.filter(FinishedProduct.plan_name.like('%'+query_str+'%'),FinishedProduct.is_cal==False).order_by(FinishedProduct.id.asc())
         except Exception as e:
             current_app.logger.error(e)
             return ""
