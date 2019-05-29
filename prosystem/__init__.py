@@ -1,5 +1,5 @@
 import logging
-from flask import Flask, g
+from flask import Flask, g,render_template
 from flask_login import current_user
 # 导入Config类，导入config_dict字典
 from config import Config, config_dict
@@ -53,6 +53,10 @@ def create_app(config_name):
         # 把csrf_token设置到客户端浏览器的cookie中
         response.set_cookie('csrf_token', csrf_token)
         return response
+
+    @app.errorhandler(404)
+    def not_found_error(error):
+        return render_template('other/errorHtml.html'), 404
 
     # # 导入蓝图对象，注册蓝图对象
     from prosystem.modules.OtherBlue import other_blue

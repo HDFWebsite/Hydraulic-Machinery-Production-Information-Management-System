@@ -339,7 +339,7 @@ class SemifinishedCost(db.Model):
 
 
 class AllNeedInfo(db.Model):
-    """由已生产半成品算出的各种原材料、辅助材料信息"""
+    """存储生产计划相关的数据"""
     __tablename__ = "tb_allneedinfo"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
