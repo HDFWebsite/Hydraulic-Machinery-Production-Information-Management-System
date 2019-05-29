@@ -60,15 +60,18 @@ html,body{
     height: 100%;
     float: left;
     overflow: auto;
+    /*background-color: #99ccff;*/
     background-color: #E7F5FD;
 }
 .left div{
-    border-bottom: 4px solid gray;
+    border-bottom: 2px solid gray;
 }
 .left span{
+    width: 100%;
     font-size: 18px;
     line-height: 30px;
     font-weight: bold;
+     /*background-color: #99ccff;*/
 }
 .left li{
     font-size: 12px;
